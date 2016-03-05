@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p292 -->
+<!-- p307 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 12</title>
@@ -11,23 +11,44 @@
 		angular.module("exampleApp",[])
 			.controller("defaultCtrl",function($scope){
 				$scope.addUser = function(userDetails){
-					$scope.message = userDetails.name
-						+" (" + userDetails.email +") (" + userDetails.agreed+")";
+					if(myForm.$valid){
+						$scope.message = userDetails.name
+							+" (" + userDetails.email +") (" + userDetails.agreed+")";
+					} else {
+						$scope.showValidation = true;
+					}
 				}
 
 				$scope.message = "Ready";
+
+				$scope.getError = function(error){
+					if(angular.isDefined(error)){
+						return "Please enter a value";
+					} else if (error.email) {
+						return "Please enter a valid email address";
+					}
+				}
+				
 			});
 	</script>
 	<style>
+		form.validate.ng-invalid-required.ng-dirty { background-color:lightpink;}
+		form.validate.ng-invalid-email.ng-dirty {
+			background-color:lightgoldenrodyellow;
+		}
+		form .ng-invalid-required.ng-dirty {background-color:lightpink;}
+		form .ng-invalid-email.ng-dirty {background-color:yellow;}
 		form .ng-invalid.ng-dirty {background-color:lightpink;}
 		form .ng-valid.ng-dirty {background-color:lightgreen;}
 		span.summary.ng-valid {color:red; font-weight:bold;}
 		span.summary.ng-valid {color:green;}
+		div.error {color:red; font-weight:bold;}
 	</style>
 </head>
 <body>
 	<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
-		<form name="myForm" novalidate ng-submit="addUser(newUser)">
+		<form name="myForm" novalidate ng-submit="addUser(newUser)"
+			  ng-class="showValidation ? 'validate':''">
 			<div class="well">
 				<div class="form-group">
 					<label>Name:</label>
@@ -39,6 +60,20 @@
 					<label>Email:</label>
 					<input name="userEmail" type="email" class="form-control"
 						   required ng-model="newUser.email">
+					<div class="error" ng-show="showValidation">
+						{{getError(myForm.userEmail.$error)}}
+					</div>
+				</div>
+				
+				<div class="error"
+					 ng-show="myForm.userEmail.$invalid && myForm.userEmail.$dirty">
+					<!-- <span ng-show="myForm.userEmail.$error.email">
+						Please enter a valid email address
+					</span>
+					<span ng-show="myForm.userEmail.$error.required">
+						Please enter a value
+					</span>  -->
+					{{getError(myForm.userEmail.$error)}}
 				</div>
 				
 				<div class="checkbox">
