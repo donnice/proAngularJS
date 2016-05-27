@@ -44,8 +44,11 @@
 	</div>
 	
 	<div class = "alert alert-danger" ng-show = "data.error">
-	
+		Error ({{data.error.status}}). The product data wasn't loaded!
+		<a href = "app.html" class = "alert-link">Click here to try again.</a>
 	</div>
+	
+	<ng-view />
 	
 </body>
 </html>
