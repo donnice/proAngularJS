@@ -8,7 +8,19 @@ angular.module('sportsStoreAdmin')
 				password:pass
 			}, {
 				withCredentials:true
-			})
+			}).success(function(data){
+				$location.path('/main');
+			}).error(function(error){
+				$scope.authenticationError = error;
+			});
+		};
+	})
+	.controller('mainCtrl',function($scope){
+		$scope.screens = ['Products','Orders'];
+		$scope.current = $scope.screens[0];
+		
+		$scope.setScreen = function(index){
+			
 		}
 	})
 		
