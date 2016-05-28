@@ -9,7 +9,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 	<script>
-		angular.module('sportsStore',['customFilters','cart','ngRoute'])
+		/* angular.module('sportsStore',['customFilters','cart','ngRoute'])
 		.config(function($routeProvider){
 			$routeProvider.when('/complete',{
 				templateUrl:'views/thankYou.html'
@@ -30,26 +30,40 @@
 			$routeProvider.otherwise({
 				templateUrl:'views/productList.html'
 			});
-		});
+		}); */
+		angular.module("sportsStore",[]);
 	</script>
-	<script src = "controllers/sportsStore.js"></script>
+	<!-- <script src = "controllers/sportsStore.js"></script>
 	<script src = "controllers/productListControllers.js"></script>
 	<script src = "controllers/checkoutControllers.js"></script>
 	<script src = "controllers/customFilters.js"></script>
-	<script src = "controllers/cart/cart.js"></script>
+	<script src = "controllers/cart/cart.js"></script> -->
 </head>
-<body ng-controller = "sportsStoreCtrl">
+<body>
 	<div class = "navbar navbar-inverse">
 		<a class = "navbar-brand" href = "#">SPORTS STORE</a>
-		<cart-summary/>
+		<!-- <cart-summary/> -->
 	</div>
 	
-	<div class = "alert alert-danger" ng-show = "data.error">
+	<div class = "panel panel-default row">
+		<a class = "navbar-brand" href = "#">SPORTS STORE</a>
+	</div>
+	
+	<div class = "panel panel-default row">
+		<div class = "col-xs-3">
+			Categories go here
+		</div>
+		<div class = "col-xs-8">
+			Products go here
+		</div>
+	</div>
+	
+	<!-- <div class = "alert alert-danger" ng-show = "data.error">
 		Error ({{data.error.status}}). The product data wasn't loaded!
 		<a href = "app.html" class = "alert-link">Click here to try again.</a>
 	</div>
 	
-	<ng-view />
+	<ng-view /> -->
 	
 </body>
 </html>
