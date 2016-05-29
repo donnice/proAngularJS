@@ -53,7 +53,8 @@
 			<a ng-repeat = "item in data.products | orderBy:'category'
 				| unique:'category'"
 				ng-click = "selectCategory(item)"
-				class = "btn btn-block btn-default btn-lg">
+				class = "btn btn-block btn-default btn-lg"
+				ng-lcass = "getCategoryClass(item)">
 				{{item}}
 			</a>
 		</div>
