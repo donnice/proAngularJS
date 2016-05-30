@@ -33,8 +33,8 @@
 //	});
 
 angular.module("sportsStore")
-.constant("dataUrl","http://localhost:8080/proAngularJS/chapter06/products")
-.controller("sportsStoreCtrl",function($scope){
+.constant("dataUrl","http://localhost:8080/proAngularJS/chapter06/products.json")
+.controller("sportsStoreCtrl",function($scope,$http, dataUrl){
 	$scope.data = {};
 	
 	$http.get(dataUrl)
