@@ -46,7 +46,13 @@
 		<!-- <cart-summary/> -->
 	</div>
 	
-	<div class = "panel panel-default row" ng-controller = "productListCtrl">
+	<div class = "alert alert_danger" ng-show = "data.error">
+		Error ({{data.errors.statis}}). The product data was not loaded!
+		<a href = "/app.html" class = "alert-link">Click me to try again!</a>
+	</div>
+	
+	<div class = "panel panel-default row" ng-controller = "productListCtrl"
+		ng-hide = "data.error">
 		<div class = "col-xs-3">
 			<a ng-click = "selectCategory()"
 			   class = "btn btn-block btn-default btn-lg">Home</a>
