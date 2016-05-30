@@ -33,7 +33,7 @@
 //	});
 
 angular.module("sportsStore")
-.constant("dataUrl","http://localhost:8080/products")
+.constant("dataUrl","http://localhost:8080/proAngularJS/chapter06/products")
 .controller("sportsStoreCtrl",function($scope){
 	$scope.data = {};
 	
@@ -41,7 +41,9 @@ angular.module("sportsStore")
 		.success(function(data){
 			$scope.data.products = data;
 		})
-		.error
+		.error(function(error){
+			$scope.data.error = error;
+		});
 //		products:[
 //	          { name: "Product #1",description:"A product",
 //	        	  category:"Category #1",price:100},
