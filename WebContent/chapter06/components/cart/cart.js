@@ -47,7 +47,7 @@ angular.module("cart",[])
 					total += (cartData[i].price * cartData[i].count);
 				}
 				return total;
-			}
+			};
 			
 			$scope.itemCount = function(){
 				var total = 0;
@@ -55,7 +55,7 @@ angular.module("cart",[])
 					total += cartData[i].count;
 				}
 				return total;
-			}
+			};
 		}
 	};
 });
