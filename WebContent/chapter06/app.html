@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--p149  -->
+<!--p161  -->
 <html ng-app = "sportsStore">
 <head>
 	<meta charset="UTF-8">
@@ -32,18 +32,18 @@
 				templateUrl:'views/productList.html'
 			});
 		}); */
-		angular.module("sportsStore",["customFilters"]);
+		angular.module("sportsStore",["customFilters","cart"]);
 	</script>
 	<script src = "filters/customFilters.js"></script>
 	<script src = "controllers/sportsStore.js"></script>
 	<script src = "controllers/productListControllers.js"></script>
-	<!-- <script src = "controllers/checkoutControllers.js"></script>
-	<script src = "controllers/cart/cart.js"></script> -->
+	<!-- <script src = "controllers/checkoutControllers.js"></script> -->
+	<script src = "components/cart/cart.js"></script>
 </head>
 <body ng-controller = "sportsStoreCtrl">
 	<div class = "navbar navbar-inverse">
 		<a class = "navbar-brand" href = "#">SPORTS STORE</a>
-		<!-- <cart-summary/> -->
+		<cart-summary/>
 	</div>
 	
 	<div class = "alert alert_danger" ng-show = "data.error">
