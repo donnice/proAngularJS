@@ -19,6 +19,10 @@
 					{{item.price | currency}}
 				</span>
 			</h3>
+			<button ng-click = "addProductToCart(item)"
+					class = "btn btn-success pull-right">
+				Add to cart
+			</button>
 			<span class = "lead">{{item.description}}</span>	 
 		</div>
 		<div class = "pull-right btn-group">
@@ -26,7 +30,7 @@
 				"page in data.products | filter:categoryFilterFn | pageCount:pageSize"
 			   ng-click = "selectPage($index+1)" class = "btn btn-default"
 			   ng-class = "getPageClass($index+1)">
-			   	{{$index+1}}
+			   	{{$index+1}}Hello World!
 			</a>
 		</div>
 	</div>

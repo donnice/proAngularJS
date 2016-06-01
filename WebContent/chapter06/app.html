@@ -46,7 +46,11 @@
 		<cart-summary/>
 	</div>
 	
-	<div class = "alert alert_danger" ng-show = "data.error">
+	<div class = "alert alert-danger" ng-show = "data.error">
+		Error ({{data.error.status}}). The product data was not loaded.
+		<a href = "/app.html" class = "alert-link">Click here to try again!</a>
+	</div>
+	<!-- <div class = "alert alert_danger" ng-show = "data.error">
 		Error ({{data.errors.statis}}). The product data was not loaded!
 		<a href = "/app.html" class = "alert-link">Click me to try again!</a>
 	</div>
@@ -85,7 +89,7 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	<!-- <div class = "alert alert-danger" ng-show = "data.error">
 		Error ({{data.error.status}}). The product data wasn't loaded!
@@ -93,7 +97,7 @@
 	</div>
 	
 	<ng-view /> -->
-<!-- 	<ng-include src = "'views/productList.html'"></ng-include>
- -->	
+	<ng-include src = "'views/productList.html'"></ng-include>
+	
 </body>
 </html>
