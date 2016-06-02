@@ -13,7 +13,15 @@
 					<th>Quantity</th>
 					<th>Item</th>
 					<th class = "text-right">Price</th>
-					
+					<th class = "text-right">Subtotal</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in cartData">
+					<td class = "text-center">{{item.count}}</td>
+					<td class = "text-left">{{item.name}}</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </div>
