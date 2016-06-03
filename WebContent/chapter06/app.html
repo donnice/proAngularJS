@@ -14,10 +14,17 @@
 		.config(function($routeProvider){
 
 			$routeProvider.when("/checkout",{
-				
-			})
-			
-		})
+				templateUrl:"/views/checkoutSummary.html"
+			});
+
+			$routeProvider.when("/products",{
+				templateUrl:"/views/productList.html"
+			});
+
+			$routeProvider.otherwise({
+				templateUrl:"/views/productList.html"	
+			});
+		});
 	</script>
 	<script src = "filters/customFilters.js"></script>
 	<script src = "controllers/sportsStore.js"></script>
@@ -35,6 +42,7 @@
 		Error ({{data.error.status}}). The product data was not loaded.
 		<a href = "/app.html" class = "alert-link">Click here to try again!</a>
 	</div>
+	<!-- <ng-view /> -->
 	<!-- <div class = "alert alert_danger" ng-show = "data.error">
 		Error ({{data.errors.statis}}). The product data was not loaded!
 		<a href = "/app.html" class = "alert-link">Click me to try again!</a>
