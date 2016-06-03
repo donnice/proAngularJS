@@ -7,6 +7,26 @@
 		
 		<div class = "form-group">
 			<label>Name</label>
+			<input ng-model = "data.shipping.name" name = "name"
+				   class = "form-control" required/>
+			<span class = "error" ng-show = "shippingForm.name.$error.required">
+				Please enter a name
+			</span>
+		</div>
+		
+		<h3>Address</h3>
+		
+		<div class = "form-group">
+			<label>Street Address</label>
+			<input ng-model = "data.shipping.street" name="street"
+				   class="form-control" required/>
+			<span class = "error" ng-show="shippingForm.street.$error.required">
+				Please enter a street address
+			</span>
+		</div>
+		
+		<div class="form-group">
+			<label>City</label>
 		</div>
 	</div>
 	
