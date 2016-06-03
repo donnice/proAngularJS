@@ -1,0 +1,19 @@
+<h2>Your cart</h2>
+
+<div ng-controller="cartSummaryController">
+	<div class = "alert alert-warning" ng-show = "cartData.length==0">
+		There are no products in your shopping cart.
+		<a href = "#/products" class = "alert-link">Click here to return to the catalogue.</a>
+	</div>
+	
+	<div ng-hide = "cartData.length == 0">
+		<table class = "table">
+			<thead>
+				<tr>
+					<th>Quantity</th>
+					<th>Item</th>
+					<th class = "text-right">Price</th>
+					
+		</table>
+	</div>
+</div>
