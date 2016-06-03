@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--p161  -->
+<!--p166  -->
 <html ng-app = "sportsStore">
 <head>
 	<meta charset="UTF-8">
@@ -10,29 +10,14 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 	<script>
-		/* angular.module('sportsStore',['customFilters','cart','ngRoute'])
+		angular.module("sportsStore",["customFilters","cart","ngRoute"])
 		.config(function($routeProvider){
-			$routeProvider.when('/complete',{
-				templateUrl:'views/thankYou.html'
-			});
 
-			$routeProvider.when('/placeorder',{
-				templateUrl:'views/placeOrder.html'
-			});
-
-			$routeProvider.when('/checkout',{
-				templateUrl:'views/checkoutSummary.html'
-			});
-
-			$routeProvider.when('/products',{
-				templateUrl:'views/productList.html'
-			});
-
-			$routeProvider.otherwise({
-				templateUrl:'views/productList.html'
-			});
-		}); */
-		angular.module("sportsStore",["customFilters","cart"]);
+			$routeProvider.when("/checkout",{
+				
+			})
+			
+		})
 	</script>
 	<script src = "filters/customFilters.js"></script>
 	<script src = "controllers/sportsStore.js"></script>
