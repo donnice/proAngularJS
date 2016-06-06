@@ -13,24 +13,28 @@
 		angular.module("sportsStore",["customFilters","cart","ngRoute"])
 		.config(function($routeProvider){
 			$routeProvider.when("/complete",{
-				templateUrl:"/views/thankYou.html"
+				templateUrl:"views/thankYou.html"
 			});
 
-			$routeProvider.when("/placeholder",{
-				templateUrl:"/views/placeOrder.html"
+			$routeProvider.when('/placeorder',{
+				templateUrl:'views/placeOrder.html'
 			});
 
 			$routeProvider.when("/checkout",{
-				templateUrl:"/views/checkoutSummary.html"
+				templateUrl:"views/checkoutSummary.html"
 			});
 
 			$routeProvider.when("/products",{
-				templateUrl:"/views/productList.html"
+				templateUrl:"views/productList.html"
 			});
 
 			$routeProvider.otherwise({
-				templateUrl:"/views/productList.html"	
+				templateUrl:"views/productList.html"	
 			});
+
+			/* $routeProvider.otherwise({
+                templateUrl: 'views/productList.html'
+            }); */
 		});
 	</script>
 	<script src = "filters/customFilters.js"></script>
@@ -50,7 +54,8 @@
 		<a href = "/app.html" class = "alert-link">Click here to try again!</a>
 	</div>
 	
-	<ng-include src = "'views/productList.html'"></ng-include>
+	<!-- <ng-include src = "'views/productList.html'"></ng-include> -->
+	<ng-view/>
 	
 </body>
 </html>
