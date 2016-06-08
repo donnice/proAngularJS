@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS User Registration and Login</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href = "app.css"/>
+</head>
+<body>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div ng-class="{'alert':flash, 'alert-success':flash.type === 'success,
+				'alert-danger':flash.type === 'error'}" ng-if = "flash" 
+				ng-bind="flash.message">
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+</body>
+</html>
