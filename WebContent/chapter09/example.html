@@ -12,7 +12,12 @@
 
 			myApp.controller("dayCtrl",function($scope){
 				//
+				var dayNames=["Sunday","Monday","Tuesday","Wednesday",
+					  			"Thursday","Friday","Saturday"];
+		  			
+	  			$scope.day = dayNames[new Date().getDay()];
 			});
+
 
 		</script>
 	</head>
