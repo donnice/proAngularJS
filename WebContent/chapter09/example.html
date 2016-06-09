@@ -17,7 +17,24 @@
 		  			
 	  			$scope.day = dayNames[new Date().getDay()];
 	  			$scope.tomorrow = dayNames[(new Date().getDay() + 1)%7];
+	  			$scope.trytry = 1;
 			});
+
+			myApp.directive("highlight",function(){
+				return function(scope,element,attrs){
+					if(scope.day == attrs["highlight"]){
+						element.css("color","red");
+					}
+				}
+			});
+
+			myApp.filter("dayName",function(){
+				var dayNames=["Sunday","Monday","Tuesday","Wednesday",
+					  			"Thursday","Friday","Saturday"];
+	  			return function(input){
+		  			return angular.isNumber(input) ? dayNames[input]:input;
+		  		};
+			});	
 
 
 		</script>
@@ -27,8 +44,15 @@
 		<div class="page-header">
 			<h3>AngularJS App</h3>
 		</div>
-		<h4 ng-controller="dayCtrl">Today is {{day || "(Unkown)"}}</h4>
-		<h4 ng-controller="dayCtrl">Tomorrow is {{tomorrow || "(Unknown)"}}</h4>
+		<h4 ng-controller="dayCtrl" highlight="Wednesday">
+			Today is {{day || "(Unkown)" | dayName}}
+		</h4>
+		<h4 ng-controller="dayCtrl">
+			Tomorrow is {{tomorrow || "(Unknown)" | dayName}}
+		</h4>
+		<h4 ng-controller="dayCtrl">
+			Well let's see monday:{{trytry || "(Unknown)" | dayName}}
+		</h4>
 	</div>
 </body>
 </html>
