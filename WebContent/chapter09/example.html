@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="exampleApp">
 	<head>
 		<meta charset="UTF-8">
 		<title>AngularJS Demo</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script>
+
+			var myApp = angular.module("exampleApp",[]);
+
+			myApp.controller("dayCtrl",function($scope){
+				//
+			});
+
+		</script>
 	</head>
 <body>
-
+	<div class = "panel" ng-controller="dayCtrl">
+		<div class="page-header">
+			<h3>AngularJS App</h3>
+		</div>
+		<h4>Today is {{day || "(Unkown)"}}</h4>
+	</div>
 </body>
 </html>
