@@ -7,9 +7,13 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src = "controllers.js"></script>
+		<script src = "filters.js"></script>
 		<script>
 
-			var myApp = angular.module("exampleApp",[]);
+			var myApp = angular.module("exampleApp",
+					["exampleApp.Controllers","exampleApp.Filters",
+					 "exampleApp.Services","exampleApp.Directives"]);
 
 			/* myApp.controller("dayCtrl",function($scope){
 				//
@@ -21,13 +25,13 @@
 	  			$scope.trytry = 1;
 			}); */
 
-			myApp.controller("dayCtrl",function($scope,days){
+			/* myApp.controller("dayCtrl",function($scope,days){
 				$scope.day = days.today;
 			});
 			
 			myApp.controller("tomorrowCtrl",function($scope,days){
 				$scope.day = days.tomorrow;
-			})
+			}) */
 
 			myApp.directive("highlight",function($filter){
 				/* return function(scope,element,attrs){
@@ -36,7 +40,7 @@
 					}
 				} */
 
-				var dayFilter = $filter("dayName");
+				/* var dayFilter = $filter("dayName");
 
 				return function(scope, element, attrs){
 					if(dayFilter(scope.day) == attrs["highlight"]){
@@ -51,20 +55,20 @@
 	  			return function(input){
 		  			return angular.isNumber(input) ? dayNames[input]:input;
 		  		};
-			});	
+			});	 */
 
 			/* myApp.service("days",function(){
 				this.today=new Date().getDay();
 				this.tomorrow = this.today + 1;
 			}); */
-
+/* 
 			var now = new Date();
 			myApp.value("nowValue",now);
 
 			myApp.service("days",function(nowValue){
 				this.today = nowValue.getDay();
 				this.tomorrow = this.today + 1;
-			})
+			}) */
 
 
 		</script>
