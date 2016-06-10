@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
+<!-- p225 -->
 	<head>
 		<meta charset="UTF-8">
 		<title>AngularJS Demo</title>
@@ -10,7 +11,7 @@
 
 			var myApp = angular.module("exampleApp",[]);
 
-			myApp.controller("dayCtrl",function($scope){
+			/* myApp.controller("dayCtrl",function($scope){
 				//
 				var dayNames=["Sunday","Monday","Tuesday","Wednesday",
 					  			"Thursday","Friday","Saturday"];
@@ -18,7 +19,15 @@
 	  			$scope.day = dayNames[new Date().getDay()];
 	  			$scope.tomorrow = dayNames[(new Date().getDay() + 1)%7];
 	  			$scope.trytry = 1;
+			}); */
+
+			myApp.controller("dayCtrl",function($scope,days){
+				$scope.day = days.today;
 			});
+			
+			myApp.controller("tomorrowCtrl",function($scope,days){
+				$scope.day = days.tomorrow;
+			})
 
 			myApp.directive("highlight",function($filter){
 				/* return function(scope,element,attrs){
@@ -44,6 +53,11 @@
 		  		};
 			});	
 
+			myApp.service("days",function(){
+				this.today=new Date().getDay();
+				this.tomorrow = this.today + 1;
+			});
+
 
 		</script>
 	</head>
@@ -52,11 +66,11 @@
 		<div class="page-header">
 			<h3>AngularJS App</h3>
 		</div>
-		<h4 ng-controller="dayCtrl" highlight="Wednesday">
+		<h4 ng-controller="dayCtrl" highlight="Thursday">
 			Today is {{day || "(Unkown)" | dayName}}
 		</h4>
-		<h4 ng-controller="dayCtrl">
-			Tomorrow is {{tomorrow || "(Unknown)" | dayName}}
+		<h4 ng-controller="tomorrowCtrl">
+			Tomorrow is {{day || "(Unknown)" | dayName}}
 		</h4>
 		<h4 ng-controller="dayCtrl">
 			Well let's see monday:{{trytry || "(Unknown)" | dayName}}
