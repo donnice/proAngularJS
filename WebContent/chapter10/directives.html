@@ -10,15 +10,15 @@
 		angular.module("exampleApp",[])
 		.controller("defaultCtrl",function($scope){
 			$scope.todos = [
-			    {action:"Environmental Engineering",complete:true},
-			    {action:"Chemical Engineering",complete:true},
-			    {action:"Computer Science",complete:false},
-			    {action:"Computational Finance",complete:false},
-			    {action:"Electrical Engineering",complete:false},
-			    {action:"Material Science and Engineering",complete:false},
-			    {action:"Mechanical Engineering",complete:false},
-			    {action:"Biology",complete:false},
-			    {action:"Civil Engineering",complete:false}];
+			    {action:"Environmental Engineering, ECUST",complete:true},
+			    {action:"Chemical Engineering, UMich",complete:true},
+			    {action:"Computer Science, Gatech",complete:false},
+			    {action:"Computational Finance, UW",complete:false},
+			    {action:"Electrical Engineering, UCLA",complete:false},
+			    {action:"Material Science and Engineering, Columbia",complete:false},
+			    {action:"Mechanical Engineering, MIT",complete:false},
+			    {action:"Biology, RWTH",complete:false},
+			    {action:"Civil Engineering, HKUST",complete:false}];
 		});
 	</script>
 </head>
@@ -50,7 +50,27 @@
 			<input name="firstItem" class="form-control" ng-model="todos[0].action"/>
 		</div> -->
 		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Action</th>
+					<th>Done</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in todos">
+					<!-- <td>{{item.action}}</td>
+					<td>{{item.complete}}</td> -->
+					<td>{{$index+1}}</td>
+					<td ng-repeat="prop in item">{{prop}}</td>
+					
+					<!-- <td ng-repeat="(key,value) in item">
+						{{key}}={{value}}
+					</td> -->
+				</tr>
+			</tbody>
+		</table>	
 	</div>
-
 </body>
 </html>
