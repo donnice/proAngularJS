@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p225 -->
+<!-- p229 -->
 	<head>
 		<meta charset="UTF-8">
 		<title>AngularJS Demo</title>
@@ -14,6 +14,21 @@
 			var myApp = angular.module("exampleApp",
 					["exampleApp.Controllers","exampleApp.Filters",
 					 "exampleApp.Services","exampleApp.Directives"]);
+
+			angular.module("exampleApp.Directives",[])
+				.directive("highlight",function($filter){
+
+				var dayFilter = $filter("dayName");
+
+				return function(scope,element,attrs){
+					if(scope.day == attrs["highlight"]){
+						element.css("color","red");
+					}
+				}
+			});
+
+			var now = new Date();
+			myApp.value("nowValue",now);
 
 			/* myApp.controller("dayCtrl",function($scope){
 				//
@@ -33,8 +48,8 @@
 				$scope.day = days.tomorrow;
 			}) */
 
-			myApp.directive("highlight",function($filter){
-				/* return function(scope,element,attrs){
+			/*myApp.directive("highlight",function($filter){
+				 return function(scope,element,attrs){
 					if(scope.day == attrs["highlight"]){
 						element.css("color","red");
 					}
