@@ -21,6 +21,10 @@
 			    {action:"Civil Engineering, HKUST",complete:false}];
 		});
 	</script>
+	<style>
+		.odd { background-color:lightcoral }
+		.even { background-color: lavenderblush}
+	</style>
 </head>
 
 <body>
@@ -59,15 +63,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="item in todos">
-					<!-- <td>{{item.action}}</td>
-					<td>{{item.complete}}</td> -->
-					<td>{{$index+1}}</td>
-					<td ng-repeat="prop in item">{{prop}}</td>
+				<tr ng-repeat-start="item in todos" ng-class = "$odd?'odd':'even'">
+					<!-- <td>{{item.complete}}</td> -->
+					<!-- <td>{{$index+1}}</td>
+					<td>{{item.action}}</td>
+					<td><span ng-if="$first || $last">{{item.complete}}</span></td> -->
+					<!-- <td ng-repeat="prop in item">{{prop}}</td> -->
 					
 					<!-- <td ng-repeat="(key,value) in item">
 						{{key}}={{value}}
 					</td> -->
+					<td>This is item{{$index}}</td>
+				</tr>
+				
+				<tr>
+					<td>The action is:{{item.action}}</td>
+				</tr>
+				
+				<tr ng-repeat-end>
+					<td>Item {{$index}} is {{item.complete?'':'not '}}completed</td>
 				</tr>
 			</tbody>
 		</table>	
