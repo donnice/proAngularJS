@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Chapter 10</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope){
+			$scope.todos = [
+			    {action:"Environmental Engineering",complete:true},
+			    {action:"Chemical Engineering",complete:true},
+			    {action:"Computer Science",complete:false},
+			    {action:"Computational Finance",complete:false},
+			    {action:"Electrical Engineering",complete:false},
+			    {action:"Material Science and Engineering",complete:false},
+			    {action:"Mechanical Engineering",complete:false},
+			    {action:"Biology",complete:false},
+			    {action:"Civil Engineering",complete:false}];
+		});
+	</script>
 </head>
+
 <body>
+	<div id = "todoPanel" class = "panel" ng-controller="defaultCtrl">
+		<h3 class = "panel-header">To Do List</h3>
+		Data items will go here...
+	</div>
 
 </body>
 </html>
