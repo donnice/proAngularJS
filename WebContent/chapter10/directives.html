@@ -20,6 +20,9 @@
 			    {action:"Mechanical Engineering, MIT",complete:false},
 			    {action:"Biology, RWTH",complete:false},
 			    {action:"Civil Engineering, HKUST",complete:false}];
+			$scope.viewFile = function(){
+				return $scope.showList? "list.html":"table.html";
+			}
 		});
 	</script>
 	<style>
@@ -54,39 +57,17 @@
 			<label for="firstItem">Set First Item:</label>
 			<input name="firstItem" class="form-control" ng-model="todos[0].action"/>
 		</div> -->
+		<div class = "well">
+			<div class="checkbox">
+				<label>
+					<input type = "checkbox" ng-model = "showList">
+					Use the list view	
+				</label>
+			</div>
+		</div>
 		
-		<!-- <table class="table">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Action</th>
-					<th>Done</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat-start="item in todos" ng-class = "$odd?'odd':'even'">
-					<td>{{item.complete}}</td>
-					<td>{{$index+1}}</td>
-					<td>{{item.action}}</td>
-					<td><span ng-if="$first || $last">{{item.complete}}</span></td>
-					<td ng-repeat="prop in item">{{prop}}</td>
-					
-					<td ng-repeat="(key,value) in item">
-						{{key}}={{value}}
-					</td>
-					<td>This is item{{$index}}</td>
-				</tr>
-				
-				<tr>
-					<td>The action is:{{item.action}}</td>
-				</tr>
-				
-				<tr ng-repeat-end>
-					<td>Item {{$index}} is {{item.complete?'':'not '}}completed</td>
-				</tr>
-			</tbody>
-		</table> -->
-		<ng-include src = "table.html"></ng-include>	
+		<!-- <ng-include src = "table.html"></ng-include> -->
+		<ng-include src="viewFile()"></ng-include>	
 	</div>
 </body>
 </html>
