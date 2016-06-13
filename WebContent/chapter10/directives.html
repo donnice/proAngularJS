@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
+<!-- p250 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 10</title>
@@ -54,7 +55,7 @@
 			<input name="firstItem" class="form-control" ng-model="todos[0].action"/>
 		</div> -->
 		
-		<table class="table">
+		<!-- <table class="table">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -64,15 +65,15 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat-start="item in todos" ng-class = "$odd?'odd':'even'">
-					<!-- <td>{{item.complete}}</td> -->
-					<!-- <td>{{$index+1}}</td>
+					<td>{{item.complete}}</td>
+					<td>{{$index+1}}</td>
 					<td>{{item.action}}</td>
-					<td><span ng-if="$first || $last">{{item.complete}}</span></td> -->
-					<!-- <td ng-repeat="prop in item">{{prop}}</td> -->
+					<td><span ng-if="$first || $last">{{item.complete}}</span></td>
+					<td ng-repeat="prop in item">{{prop}}</td>
 					
-					<!-- <td ng-repeat="(key,value) in item">
+					<td ng-repeat="(key,value) in item">
 						{{key}}={{value}}
-					</td> -->
+					</td>
 					<td>This is item{{$index}}</td>
 				</tr>
 				
@@ -84,7 +85,8 @@
 					<td>Item {{$index}} is {{item.complete?'':'not '}}completed</td>
 				</tr>
 			</tbody>
-		</table>	
+		</table> -->
+		<ng-include src = "table.html"></ng-include>	
 	</div>
 </body>
 </html>
