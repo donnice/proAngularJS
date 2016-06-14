@@ -80,10 +80,35 @@
 			</div>
 		</div>
 		
-		
+		<div ng-switch on="data.mode">
+			<div ng-switch-when="Table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Action</th>
+							<th>Done</th>
+						</tr>
+					</thead>
+					
+					<tr ng-repeat="item in todos" ng-class="$odd? 'odd':'even'">
+						<td>{{$index+1}}</td>
+						<td ng-repeat="prop in item">{{prop}}</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div ng-switch-when="List">
+				<ol>
+					<li ng-repeat="item in todos">
+						{{item.action}}<span ng-if="item.conplete">(Done)</span>
+					</li>
+				</ol>
+			</div>
+		</div>
 		
 		<!-- <ng-include src = "table.html"></ng-include> -->
-		<ng-include src="viewFile()" onload="reportChange()"></ng-include>	
+		<!-- <ng-include src="viewFile()" onload="reportChange()"></ng-include> -->	
 	</div>
 </body>
 </html>
