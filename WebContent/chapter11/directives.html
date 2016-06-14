@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
+<!-- p268 -->
 <head>
 	<meta charset="UTF-8">
-	<title>Chapter 10</title>
+	<title>Chapter 11</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -53,8 +54,10 @@
 				<td>{{$index+1}}</td>
 				<td>{{item.action}}</td>
 				<td>
-					<span ng-hide="item.complete">(Incomplete)</span>
-					<span ng-show="item.complete">(Done)</span>
+					<!-- <span ng-hide="item.complete">(Incomplete)</span>
+					<span ng-show="item.complete">(Done)</span> -->
+					<span ng-if="!item.complete">(Incomplete)</span>
+					<span ng-if="item.complete">(Done)</span>
 				</td>
 			</tr>
 		</table>
