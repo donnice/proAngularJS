@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		
-		<div ng-switch on="data.mode">
+		<div ng-switch on="data.mode" ng-cloak>
 			<div ng-switch-when="Table">
 				<table class="table">
 					<thead>
@@ -101,9 +101,12 @@
 			<div ng-switch-when="List">
 				<ol>
 					<li ng-repeat="item in todos">
-						{{item.action}}<span ng-if="item.conplete">(Done)</span>
+						{{item.action}}<span ng-if="item.complete">(Done)</span>
 					</li>
 				</ol>
+			</div>
+			<div ng-switch-default>
+				Select another option to display a layout
 			</div>
 		</div>
 		
