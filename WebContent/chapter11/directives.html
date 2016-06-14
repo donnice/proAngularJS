@@ -13,7 +13,7 @@
 			$scope.todos = [
 			    {action:"Environmental Engineering, ECUST",complete:true},
 			    {action:"Chemical Engineering, UMich",complete:true},
-			    {action:"Computer Science, Gatech",complete:false},
+			    {action:"Computer Science, Gatech",complete:true},
 			    {action:"Computational Finance, UW",complete:false},
 			    {action:"Electrical Engineering, UCLA",complete:false},
 			    {action:"Material Science and Engineering, Columbia",complete:false},
@@ -22,11 +22,23 @@
 			    {action:"Civil Engineering, HKUST",complete:false}];
 		});
 	</script>
+	<style>
+		td >*:first-child {
+			font-weight:bold
+		}
+	</style>
 </head>
 
 <body>
 	<div id = "todoPanel" class = "panel" ng-controller="defaultCtrl">
 		<h3 class = "panel-header">To Do List</h3>
+		
+		<div class="checkbox well">
+			<label>
+				<input type="checkbox" ng-model="todos[2].complete"/>
+				Item 3 is complete
+			</label>
+		</div>
 		
 		<table class="table">
 			<thead>
@@ -39,7 +51,11 @@
 			
 			<tr ng-repeat="item in todos" ng-class="$odd? 'odd':'even'">
 				<td>{{$index+1}}</td>
-				<td ng-repeat="prop in item">{{prop}}</td>
+				<td>{{item.action}}</td>
+				<td>
+					<span ng-hide="item.complete">(Incomplete)</span>
+					<span ng-show="item.complete">(Done)</span>
+				</td>
 			</tr>
 		</table>
 	</div>
