@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p250 -->
+<!-- p256 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 10</title>
@@ -10,6 +10,9 @@
 	<script>
 		angular.module("exampleApp",[])
 		.controller("defaultCtrl",function($scope){
+
+			$scope.data = {};
+			
 			$scope.todos = [
 			    {action:"Environmental Engineering, ECUST",complete:true},
 			    {action:"Chemical Engineering, UMich",complete:true},
@@ -62,13 +65,22 @@
 			<input name="firstItem" class="form-control" ng-model="todos[0].action"/>
 		</div> -->
 		<div class = "well">
-			<div class="checkbox">
+			<!-- <div class="checkbox">
 				<label>
 					<input type = "checkbox" ng-model = "showList">
 					Use the list view	
 				</label>
+			</div> -->
+			<div class = "radio" ng-repeat="button in ['None','Table','List']">
+				<label>
+					<input type = "radio" ng-model="data.mode"
+						value="{{button}}" ng-checked="$first"/>
+						{{button}}
+				</label>
 			</div>
 		</div>
+		
+		
 		
 		<!-- <ng-include src = "table.html"></ng-include> -->
 		<ng-include src="viewFile()" onload="reportChange()"></ng-include>	
