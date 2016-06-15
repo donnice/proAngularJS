@@ -21,12 +21,24 @@
 			    {action:"Mechanical Engineering, MIT",complete:false},
 			    {action:"Biology, RWTH",complete:false},
 			    {action:"Civil Engineering, HKUST",complete:false}];
+
+		    $scope.buttonNames = ["Red","Green","Blue"];
+
+		    $scope.settings = {
+				Rows: "Red",
+				Columns:"Green"
+			};
 		});
+
 	</script>
 	<style>
-		td >*:first-child {
+		/* td >*:first-child {
 			font-weight:bold
-		}
+		} */
+		
+		tr.Red {background-color: lightcoral;}
+		tr.Green {background-color:lightgreen;}
+		tr.Blue {background-color:lightblue;}
 	</style>
 </head>
 
@@ -34,12 +46,23 @@
 	<div id = "todoPanel" class = "panel" ng-controller="defaultCtrl">
 		<h3 class = "panel-header">To Do List</h3>
 		
-		<div class="checkbox well">
+		<div class="row well">
+			<div class="col-xs-6" ng-repeat="(key,val) in settings">
+				<h4>{{key}}</h4>
+				<div class="radio" ng-repeat="button in buttonNames">
+					<label>
+						<input type="radio" ng-model="settings[key]"
+							va;ue="{{button}}">{{button}}
+					</label>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="checkbox well">
 			<label>
 				<input type="checkbox" ng-model="todos[2].complete"/>
 				Item 3 is complete
 			</label>
-		</div>
+		</div>-->
 		
 		<table class="table table-striped">
 			<thead>
@@ -54,8 +77,8 @@
 				<td>{{$index+1}}</td>
 				<td>{{item.action}}</td>
 				<td>
-					<!-- <span ng-hide="item.complete">(Incomplete)</span>
-					<span ng-show="item.complete">(Done)</span> -->
+					<span ng-hide="item.complete">(Incomplete)</span>
+					<span ng-show="item.complete">(Done)</span>
 					<span ng-if="!item.complete">(Incomplete)</span>
 					<span ng-if="item.complete">(Done)</span>
 				</td>
