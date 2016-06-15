@@ -41,7 +41,7 @@
 			</label>
 		</div>
 		
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -50,7 +50,7 @@
 				</tr>
 			</thead>
 			
-			<tr ng-repeat="item in todos" ng-class="$odd? 'odd':'even'">
+			<tr ng-repeat="item in todos | filter:{complete:'false'}">
 				<td>{{$index+1}}</td>
 				<td>{{item.action}}</td>
 				<td>
