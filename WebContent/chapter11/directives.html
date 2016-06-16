@@ -58,7 +58,9 @@
 		
 		<div class="well">
 			<span ng-repeat="button in buttonNames">
-				
+				<button class="btn btn-info" ng-click="data.rowColor=button">
+					{{button}}
+				</button>
 			</span>
 		</div>
 		
@@ -89,18 +91,26 @@
 				</tr>
 			</thead>
 			
+			<tr ng-repeat="item in todos" ng-class="data.rowColor"
+				ng-mouseenter="handleEvent($event)"
+				ng-mouseleave="handleEvent($event)">
+				<td>{{$index+1}}</td>
+				<td>{{item.action}}</td>
+				<td ng-class="data.columnColor">{{item.complete}}</td>
+			</tr>
+				
 			<!-- <tr ng-repeat="item in todos | filter:{complete:'false'}"> -->
-			<tr ng-repeat="item in todos" ng-class="settings.Rows">
+			<!-- <tr ng-repeat="item in todos" ng-class="settings.Rows">
 				<td>{{$index+1}}</td>
 				<td>{{item.action}}</td>
 				<td ng-style="{'background-color':settings.Columns}">
-					<!-- <span ng-hide="item.complete">(Incomplete)</span>
+					<span ng-hide="item.complete">(Incomplete)</span>
 					<span ng-show="item.complete">(Done)</span>
 					<span ng-if="!item.complete">(Incomplete)</span>
-					<span ng-if="item.complete">(Done)</span> -->
+					<span ng-if="item.complete">(Done)</span>
 					{{item.complete}}
 				</td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 </body>
