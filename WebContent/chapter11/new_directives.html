@@ -15,7 +15,19 @@
 		
 			}).directive("tap",function(){
 				return function(scope,elem,attrs){
-
+					elem.on("touchstart touchend",function(){
+						scope.$apply(attrs["tap"]);
+					});
 				}
-			})
+			});
 	</script>
+</head>
+
+<body>
+	<div id = "todoPanel" class="panel" ng-controller="defaultCtrl">
+		<div class="well" tap="message = 'Tapped!'">
+			{{message}}
+		</div>
+	</div>
+</body>
+</html>
