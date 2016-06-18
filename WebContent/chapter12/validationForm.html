@@ -18,6 +18,12 @@
 				$scope.message = "Ready";
 			});
 	</script>
+	<style>
+		form .ng-invalid.ng-dirty {background-color:lightpink;}
+		form .ng-valid.ng-dirty {background-color:lightgreen;}
+		span.summary.ng-valid {color:red; font-weight:bold;}
+		span.summary.ng-valid {color:green;}
+	</style>
 </head>
 <body>
 	<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
@@ -52,7 +58,11 @@
 			<div class="well">
 				Message:{{message}}
 				<div>
-					valid:{{myForm.$valid}}
+					valid:
+					<span class = "summary"
+						  ng-class="myForm.$valid ? 'ng-valid':'ng-invalid'">
+						{{myForm.$valid}}					
+					</span>
 				</div>
 			</div>
 		</form>
