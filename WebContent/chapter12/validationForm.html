@@ -12,13 +12,16 @@
 			.controller("defaultCtrl",function($scope){
 				$scope.addUser = function(userDetails){
 					$scope.message = userDetails.name
-						+" (" + userDetails.email +") ("
-	
+						+" (" + userDetails.email +") (" + userDetails.agreed+")";
 				}
-		}
+
+				$scope.message = "Ready";
+			});
 	</script>
 </head>
 <body>
-
+	<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+		
+	</div>
 </body>
 </html>
