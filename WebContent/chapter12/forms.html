@@ -3,7 +3,7 @@
 <!-- p278 -->
 <head>
 	<meta charset="UTF-8">
-	<title>Chapter 11</title>
+	<title>Chapter 12</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -26,8 +26,30 @@
 </head>
 
 <body>
-	<div id="todoPanel" class="panel" ng-contorller="defaultCtrl">
-		<
+	<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+		<h3 class="panel-header">
+			To Do List
+			<span class="label label-info">
+				{{(todos | filter:{complete:'false'}).length}}
+			</span>
+		</h3>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Action</th>
+					<th>Done</th>
+				</tr>
+			</thead>
+			
+			<tr ng-repeat="item in todos">
+				<td>{{$index+1}}</td>
+				<td>{{item.action}}</td>
+				<td>{{item.complete}}</td>
+			</tr>
+			
+		</table>
 	</div>
 </body>
 </html>
