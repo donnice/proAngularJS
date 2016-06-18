@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p278 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 11</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope){
+			
+			$scope.todos = [
+			    {action:"Environmental Engineering, ECUST",complete:true},
+			    {action:"Chemical Engineering, UMich",complete:true},
+			    {action:"Computer Science, Gatech",complete:true},
+			    {action:"Computational Finance, UW",complete:false},
+			    {action:"Electrical Engineering, UCLA",complete:false},
+			    {action:"Material Science and Engineering, Columbia",complete:false},
+			    {action:"Mechanical Engineering, MIT",complete:false},
+			    {action:"Biology, RWTH",complete:false},
+			    {action:"Civil Engineering, HKUST",complete:false}];
+		});
+	</script>
+</head>
+
+<body>
+	<div id="todoPanel" class="panel" ng-contorller="defaultCtrl">
+		
+	</div>
+</body>
+</html>
