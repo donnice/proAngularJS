@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p278 -->
+<!-- p281 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 11</title>
@@ -9,25 +9,32 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script>
 		angular.module("exampleApp",[])
-			.controller("defaultCtrl",function($scope,$location){
+			.controller("defaultCtrl",function($scope){
 
-				$scope.message = "Tap Me!";
+				/* $scope.message = "Tap Me!"; */
+				$scope.dataValue = false;
 		
-			}).directive("tap",function(){
+			});/* .directive("tap",function(){
 				return function(scope,elem,attrs){
 					elem.on("touchstart touchend",function(){
 						scope.$apply(attrs["tap"]);
 					});
 				}
-			});
+			}); */
 	</script>
 </head>
 
 <body>
-	<div id = "todoPanel" class="panel" ng-controller="defaultCtrl">
+	<!-- <div id = "todoPanel" class="panel" ng-controller="defaultCtrl">
 		<div class="well" tap="message = 'Tapped!'">
 			{{message}}
 		</div>
-	</div>
+		<div>
+			momolu
+		</div>
+		
+	</div> -->
+	
+	<div id = "todoPanel" class="panel"
 </body>
 </html>
