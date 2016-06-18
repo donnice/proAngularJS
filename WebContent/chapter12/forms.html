@@ -21,6 +21,13 @@
 			    {action:"Mechanical Engineering, MIT",complete:false},
 			    {action:"Biology, RWTH",complete:false},
 			    {action:"Civil Engineering, HKUST",complete:false}];
+
+		    $scope.addNewItem = function(newItem){
+				$scope.todos.push({
+					action:newItem.action + " ("+newItem.location+")",
+					complete:false;
+				});
+			};
 		});
 	</script>
 </head>
@@ -34,7 +41,7 @@
 			</span>
 		</h3>
 		
-		<table class="table">
+		<!-- <table class="table">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -46,13 +53,21 @@
 			<tr ng-repeat="item in todos">
 				<td>{{$index+1}}</td>
 				<td>{{item.action}}</td>
-				<!-- <td>{{item.complete}}</td> -->
+				<td>{{item.complete}}</td>
 				<td>
 					<input type="checkbox" ng-model="item.complete">
 				</td>
 			</tr>
 			
-		</table>
+		</table> -->
+		
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="well">
+					
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
