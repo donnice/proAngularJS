@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p307 -->
+<!-- p309 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 12</title>
@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script>
-		angular,module("exampleApp",[])
+		angular.module("exampleApp",[])
 			.controller("defaultCtrl",function($scope){
 				$scope.requireValue = true;
 				$scope.matchPattern = new RegExp("^[a-z]");
@@ -28,7 +28,11 @@
 			</div>
 			
 			<div class="well">
-				
+				<p>Required Error: {{myForm.sample.$error.required}}</p>
+				<p>Min Length Error: {{myForm.sample.$error.minlength}}</p>
+				<p>Max Length Error: {{myForm.sample.$error.maxlength}}</p>
+				<p>Pattern Error:{{myForm.sample.$error.pattern}}</p>
+				<p>Element Valid:{{myForm.sample.$valid}}</p>
 			</div>
 		</form>
 	</div>
