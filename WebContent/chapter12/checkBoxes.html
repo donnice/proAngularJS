@@ -6,7 +6,7 @@
 	<title>Chapter 12</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<script>
 		angular.module("exampleApp",[])
 			.controller("defaultCtrl",function($scope){});
@@ -19,7 +19,7 @@
 				<div class="checkbox">
 					<label>
 						<input name="sample" type="checkbox" ng-model="inputValue"
-							   ng-true-value="Hurrah!" ng-false-value="Boo!">
+							   ng-true-value="'Hurrah'" ng-false-value="'Boo'">
 						This is a checkbox
 					</label>
 				</div>
