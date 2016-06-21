@@ -19,11 +19,19 @@
 	<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
 		<form name="myForm" novalidate>
 			<div class="well">
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label>Text:</label>
 					<input name="sample" class="form-control" ng-model="inputValue"
 						   ng-required="requireValue" ng-minlength="3"
 						   ng-maxlength="10" ng-pattern="matchPattern">
+				</div> -->
+				
+				<div class="form-group">
+					<textarea rows="3" cols="40"
+						ng-model = "textValue"
+						ng-required="requireValue" ng-minlength="3"
+						ng-maxlength="10" ng-pattern="matchPattern">
+					</textarea>
 				</div>
 			</div>
 			
