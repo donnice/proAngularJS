@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p278 -->
+<!-- p311 -->
 <head>
 	<meta charset="UTF-8">
-	<title>Chapter 11</title>
+	<title>Chapter 12</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -25,6 +25,22 @@
 	</script>
 </head>
 <body>
-
+	<div id = "todoPanel" class="panel" ng-controller="defaultCtrl">
+		<form name="myForm" novalidate>
+			<div class="well">
+				<div class="form-group">
+					<label>Select an Action:</label>
+					<select ng-model = "selectValue"
+							ng-options="item.id as item.action for item in todos">	
+						<option value="" class="">(Pick One)</option>	
+					</select>
+				</div>
+			</div>
+			
+			<div class="well">
+				<p>Selected: {{selectValue || 'None'}}</p>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
