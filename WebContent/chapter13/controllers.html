@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p318 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 12</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+			.controller("simpleCtrl",function($scope){
+
+				$scope.city = "Aachen";
+
+				$scope.cities = ["Shanghai","Aachen","New York"];
+
+				$scope.getCountry = function(city){
+					switch($scope.city){
+						case "Aachen":
+							return "DE";
+						case "New York":
+							return "USA";
+					}
+				}
+			});
+	</script>
+</head>
+<body ng-controller="simpleCtrl">
+	<div class="well">
+		<label>Select a City:</label>
+		<select ng-options="city for city in cities" ng-model="city">
+		</select>
+	</div>
+	
+	<div class="well">
+		<p>The city is: {{city}}</p>
+		<p>The country is: {{getCountry(city) || "Unknown"}}</p>
+	</div>
+</body>
+</html>
