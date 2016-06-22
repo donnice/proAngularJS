@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p325 -->
+<!-- p331 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 13</title>
@@ -9,6 +9,11 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script>
 		angular.module("exampleApp",[])
+			.service("zipCodes",function($rootScope){
+				return{
+					setZipCode:
+				}
+			})
 			.controller("simpleCtrl",function($scope, $rootScope){
 				/* $scope.addresses = {}; */
 				$scope.$on("zipCodeUpdated",function(event,args){
