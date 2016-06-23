@@ -9,21 +9,27 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script>
 		angular.module("exampleApp",[])
-			.service("zipCodes",function($rootScope){
+			.service("ZipCodes",function($rootScope){
 				return{
-					setZipCode:
+					setZipCode:function(type,zip){
+						this[type] = zip;
+						$rootScope.$broadcast("zipCodeUpdated",{
+							type:type, zipCode:zip
+						});
+					}
 				}
 			})
-			.controller("simpleCtrl",function($scope, $rootScope){
+			.controller("simpleCtrl",function($scope, ZipCodes){
 				/* $scope.addresses = {}; */
 				$scope.$on("zipCodeUpdated",function(event,args){
 					$scope[args.type] = args.zipCode;
 				});
 
 				$scope.setAddress = function(type, zip){
-					$rootScope.$broadcast("zipCodeUpdated",{
+					/* $rootScope.$broadcast("zipCodeUpdated",{
 						type:type, zipCode:zip
-					});
+					}); */
+					ZipCodes.setZipCode(type,zip);
 					console.log("Type:"+type+" "+zip);
 					//$scope.addresses[type] = zip;
 				}
