@@ -4,6 +4,10 @@ app.controller("topLevelCtrl",function($scope){
 	
 	$scope.dataValue = "Hello,Adam";
 	
+	$scope.data = {
+		dataValue:"Hello, Adam";
+	}
+	
 	$scope.reverseText = function(){
 		$scope.dataValue = $scope.dataValue.split("").reverse().join("");
 	}
