@@ -24,3 +24,15 @@ app.controller("firstChildCtrl",function($scope){
 	};
 });
 
+app.controller("secondChildCtrl",function($scope){
+	$scope.changeCase = function(){
+		$scope.dataValue = $scope.dataValue.toLowerCase();
+	};
+	
+	$scope.shiftFour = function(){
+		var result = [];
+		
+	}
+})
+
+
