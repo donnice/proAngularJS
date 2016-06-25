@@ -10,7 +10,7 @@
 	<script>
 		angular.module("exampleApp",[])
 			.controller("defaultCtrl",function($scope){
-				$scope.products = [
+				$scope.majors = [
 				   	{name:"Environmental Engineering", category:"Engineering", price:10000, expiry:4},
 				   	{name:"Chemical Engineering", category:"Engineering", price:66000, expiry:1},
 				   	{name:"Electrical Engineering", category:"Engineering",price:62000, expiry:2},
@@ -33,7 +33,32 @@
 
 <body ng-controller="defaultCtrl">
 	<div class="panel panel-default">
-		
+		<div class="panel-heading">
+			<h3>
+				Products
+				<span class="label label-primary">{{products.length}}</span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table table-striped table-bordered table-condensed">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Category</td>
+						<td>Expiry</td>
+						<td class="text-right">Price</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="p in majors">
+						<td>{{p.name}}</td>
+						<td>{{p.category}}</td>
+						<td>{{p.expiry}}</td>
+						<td class="text-right">{{p.price}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
