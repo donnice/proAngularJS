@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p349 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 14 Filters</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+			.controller("defaultCtrl",function($scope){
+				$scope.products = [
+				   	{name:"Environmental Engineering", category:"Engineering", price:10000, expiry:4},
+				   	{name:"Chemical Engineering", category:"Engineering", price:66000, expiry:1},
+				   	{name:"Electrical Engineering", category:"Engineering",price:62000, expiry:2},
+				   	{name:"Mechanical Engineering", category:"Engineering",price:30000, expiry:1},
+				   	{name:"Civil Engineering", category:"Engineering",price:15000, expiry:1},
+
+				   	{name:"Computer Science", category:"Science", price:6000, expiry:2},
+				   	{name:"Computational Finance and Risk Management", category:"Science", price:37800, expiry:2},
+					{name:"Material Science",category:"Science",price:-162000, expiry:6},
+				   	{name:"Biology", category:"Science", price:3336, expiry:3},
+
+				   	{name:"Juris Doctor",category:"Art",price:-12885, expiry:2},
+				   	
+				   	{name:"Master of Medicine", category:"Medicine", price:-18811,expiry:2}
+				   	
+				];
+			});
+	</script>
+</head>
+
+<body ng-controller="defaultCtrl">
+	<div class="panel panel-default">
+		
+	</div>
+</body>
+</html>
