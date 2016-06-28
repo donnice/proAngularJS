@@ -19,14 +19,29 @@
 
 				   	{name:"Computer Science", category:"Science", price:6000, expiry:2},
 				   	{name:"Computational Finance and Risk Management", category:"Science", price:37800, expiry:2},
-					{name:"Material Science",category:"Science",price:-162000, expiry:6},
+					{name:"Material Science",category:"Science",price:162000, expiry:6},
 				   	{name:"Biology", category:"Science", price:3336, expiry:3},
 
-				   	{name:"Juris Doctor",category:"Art",price:-12885, expiry:2},
+				   	{name:"Juris Doctor",category:"Art",price:12885, expiry:2},
 				   	
-				   	{name:"Master of Medicine", category:"Medicine", price:-18811,expiry:2}
+				   	{name:"Master of Medicine", category:"Medicine", price:18811,expiry:2}
 				   	
 				];
+
+				/* for(var i = 0; i < $scope.majors.length;i++){
+					$scope.majors[i].price = 
+						"$"+Number($scope.majors[i].price).toFixed(2);
+				} */
+				/* $scope.getExpiryDate = function(days){
+					var now = new Date();
+					return now.setDate(now.getDate()+days);
+				} */
+
+				$scope.limitVal = "5";
+				$scope.limitRange = [];
+				for(var i = (0 - $scope.majors.length); i<=$scope.majors.length; i++){
+					$scope.limitRange.push(i.toString());
+				}
 			});
 	</script>
 </head>
@@ -36,7 +51,7 @@
 		<div class="panel-heading">
 			<h3>
 				Products
-				<span class="label label-primary">{{products.length}}</span>
+				<span class="label label-primary">{{majors.length}}</span>
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -51,10 +66,12 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="p in majors">
-						<td>{{p.name}}</td>
-						<td>{{p.category}}</td>
-						<td>{{p.expiry}}</td>
-						<td class="text-right">{{p.price}}</td>
+						<td colspan="4">{{p | json}}</td>
+						<!-- <td>{{p.name | uppercase}}</td>
+						<td>{{p.category | lowercase}}</td>
+						<td>{{getExpiryDate(p.expiry) | date:"dd MMM yy"}}</td>
+						<td class="text-right">{{p.price | currency:"£"}}</td>
+						<td class="text-right">${{p.price | number:2}}</td> -->
 					</tr>
 				</tbody>
 			</table>
