@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p349 -->
+<!-- p375 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 14 Filters</title>
@@ -53,6 +53,7 @@
 				}
 			});
 	</script>
+	<script src = "customFilters.js"></script>
 </head>
 
 <body ng-controller="defaultCtrl">
@@ -78,7 +79,7 @@
 					<!-- <tr ng-repeat="p in majors | filter:{category:'Engineering'}"> -->
 					<!-- <tr ng-repeat="p in majors | filter:selectItems"> -->
 					<!-- <tr ng-repeat="p in majors | orderBy:'-price'"> -->
-					<tr ng-repeat="p in majors | orderBy:[myMajorSorter,'price'] | limitTo:5">
+					<tr ng-repeat="p in majors | skip:2 | limitTo:5">
 						<!-- <td colspan="4">{{p | json}}</td> -->
 						<td>{{p.name}}</td>
 						<td>{{p.category}}</td>
