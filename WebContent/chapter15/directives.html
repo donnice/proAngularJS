@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p385 -->
+<!-- p394 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 15 Filters</title>
@@ -29,6 +29,7 @@
 								var itemElement = angular.element('<li>');
 								listElem.append(itemElement);
 								var index = i;
+								 //the variable i isn’t evaluated until AngularJS calls the function.
 								var watcherFn = function(watchScope){
 									return watchScope.$eval(propertyExpression, data[index]);
 									//Since the IIFE is executed as soon as it is defined, the value of index won’t be updated by the next iteration of the for loop

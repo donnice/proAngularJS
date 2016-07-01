@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p394 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 15 JQlite</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+			.directive("demoDirective",function(){
+				return function(scope,element,attrs){
+					/* var items = element.children(); */
+					var items = element.find("li");
+					for(var i = 0; i<items.length; i++){
+						if(items.eq(i).text() == "Chemical Engineering"){
+							items.eq(i).css("font-weight","bold");
+						}
+					}
+				}
+			})
+			.controller("defaultCtrl",function($scope){
+				
+			});
+	</script>
+</head>
+<body ng-controller="defaultCtrl">
+	<h3>Majors</h3>
+	<ol demo-directive>
+		<li>Environmental Engineering</li>
+		<li>Chemical Engineering</li>
+		<li>Electrical Engineering</li>
+		<li>Material Science</li>
+		<ul>
+			<li>Chemical Engineering</li>
+			<li>Electrical Engineering</li>
+			<li>Mechanical Engineering</li>
+			<li>Precision Engineering</li>
+		</ul>
+		<li>Mechanical Engineering</li>
+		<li>Civil Engineering</li>
+	</ol>
+</body>
+</html>
