@@ -12,22 +12,35 @@
 			.directive("demoDirective",function(){
 				return function(scope,element,attrs){
 					/* var items = element.children(); */
-					var items = element.find("li");
+					/* var items = element.find("li"); */
+					var listElem = element.append("<ol>");
+					for(var i = 0; i < scope.names.length;i++){
+						listElem.append("<li>").append("<span>").text(scope.names[i]);
+					}
+					/* items.css("color","red");
+					
 					for(var i = 0; i<items.length; i++){
 						if(items.eq(i).text() == "Chemical Engineering"){
 							items.eq(i).css("font-weight","bold");
-						}
+						}/*  else {
+							items.eq(i).css("font-weight","normal");
+						} 
 					}
+					console.log("Element count:"+items.length);
+					console.log("Font: "+items.css("font-weight")); */
 				}
 			})
 			.controller("defaultCtrl",function($scope){
-				
+				$scope.names = ["Environmental Engineering","Chemical Engineering",
+								"Electrical Engineering","Mechanical Engineering",
+								"Civil Engineering","Computer Science","Computational Finance and Risk Management",
+								"Material Science","Biology","Juris Doctor","Master of Medicine"];
 			});
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
 	<h3>Majors</h3>
-	<ol demo-directive>
+	<!-- <ol demo-directive>
 		<li>Environmental Engineering</li>
 		<li>Chemical Engineering</li>
 		<li>Electrical Engineering</li>
@@ -40,6 +53,7 @@
 		</ul>
 		<li>Mechanical Engineering</li>
 		<li>Civil Engineering</li>
-	</ol>
+	</ol> -->
+	<div demo-directive></div>
 </body>
 </html>
