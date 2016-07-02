@@ -12,7 +12,7 @@
 		angular.module("exampleApp",[])
 			.directive("unorderedList",function(){
 				return function(scope,element,attrs){
-					var data = scope[attrs["unorderedList"]];
+					/* var data = scope[attrs["unorderedList"]];
 					var propertyExpression = attrs["listProperty"];
 					if(angular.isArray(data)){
 						var listElem = angular.element("<ul>");
@@ -22,7 +22,26 @@
 								.text(scope.$eval(propertyExpression,data[i]));
 							listElem.append(itemElement);
 						}
-					}
+					} */
+					link:function(scope,element,attrs){
+						var data = scope[attrs["unorderedList"] || attrs["listSource"]];
+						var propertyExpression = attrs["listProperty"] || "price | currency";
+						if(angular.isArray(data)){
+							var listElem = angular.element("<ul>");
+							if(element[0].nodeName == "#comment"){
+								element.parent().append(listElem);
+							} else {
+								element.append(listElem);
+							}
+
+							for(var i = 0; i < data.length; i++) {
+								var itemElement = angular.element("<li>")
+									.text(scope.$eval(propertyExpression,data[i]));
+								listElem.append(itemElement);
+							}
+						}
+					},
+					restrict:"EACM"
 				}
 			})
 			.controller("defaultCtrl",function($scope){
@@ -51,11 +70,7 @@
 		<div class="panel-heading">
 			<h3>Majors</h3>
 		</div>
-		<div class = "panel-body">
-			<button class="btn btn-primary" ng-click = "incrementPrices()">
-				Change value
-			</button>
-		</div>
+
 		<div class="panel-body">
 			<!-- <div unordered-list="majors"></div> -->
 			<!-- <div unordered-list = "majors" list-property="name"></div> -->
