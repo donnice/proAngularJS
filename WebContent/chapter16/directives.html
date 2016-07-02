@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p414 -->
+<!-- p416 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 16 Complex Directives</title>
@@ -11,7 +11,7 @@
 	<script>
 		angular.module("exampleApp",[])
 			.directive("unorderedList",function(){
-				return{
+				return {
 					/* var data = scope[attrs["unorderedList"]];
 					var propertyExpression = attrs["listProperty"];
 					if(angular.isArray(data)){
@@ -23,7 +23,7 @@
 							listElem.append(itemElement);
 						}
 					} */
-					link:function(scope,element,attrs){
+					/* link:function(scope,element,attrs){
 						var data = scope[attrs["unorderedList"] || attrs["listSource"]];
 						var propertyExpression = attrs["listProperty"] || "price | currency";
 						if(angular.isArray(data)){
@@ -41,7 +41,13 @@
 							}
 						}
 					},
-					restrict:"EACM"
+					restrict:"EACM" */
+					link:function(scope,element,attrs){
+						scope.data = scope[attrs["unorderedList"]];
+					},
+					restrict:"A",
+					template:"<ul><li ng-repeat='item in data'>"
+						+"{{item.price | currency}}</li></ul>"
 				}
 			})
 			.controller("defaultCtrl",function($scope){
@@ -71,10 +77,16 @@
 			<h3>Majors</h3>
 		</div>
 
+		<!-- <div class="panel-body">
+			<div unordered-list="majors"></div>
+			<div unordered-list = "majors" list-property="name"></div>
+			<unordered-list list-source= "majors" list-property="price | currency">
+		</div> -->
+		
 		<div class="panel-body">
-			<!-- <div unordered-list="majors"></div> -->
-			<!-- <div unordered-list = "majors" list-property="name"></div> -->
-			<unordered-list list-source= "majors" list-property="price | currency"></div>
+			<div unordered-list="majors">
+				This is where the list will go
+			</div>
 		</div>
 	</div>
 </body>
