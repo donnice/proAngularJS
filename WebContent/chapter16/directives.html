@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p411 -->
+<!-- p414 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 16 Complex Directives</title>
@@ -11,7 +11,7 @@
 	<script>
 		angular.module("exampleApp",[])
 			.directive("unorderedList",function(){
-				return function(scope,element,attrs){
+				return{
 					/* var data = scope[attrs["unorderedList"]];
 					var propertyExpression = attrs["listProperty"];
 					if(angular.isArray(data)){
@@ -74,7 +74,7 @@
 		<div class="panel-body">
 			<!-- <div unordered-list="majors"></div> -->
 			<!-- <div unordered-list = "majors" list-property="name"></div> -->
-			<div unordered-list = "majors" list-property="price | currency"></div>
+			<unordered-list list-source= "majors" list-property="price | currency"></div>
 		</div>
 	</div>
 </body>
