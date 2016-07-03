@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p416 -->
+<!-- p433 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 16 directives Scope</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type = "text/ng-template" id = "scopeTemplate">
+		<div class="panel-body">
+			<p>Name:<input ng-model="data.name" /></p>
+			<p>City:<input ng-model="city" /></p>
+			<p>Country:<input ng-model="country" /></p>
+		</div>
+	</script>
 	<script>
 		angular.module("exampleApp",[])
 			.directive("scopeDemo",function(){
-				return {
+				/* return {
 					template:
 						"<div class='panel-body'>Name:<input ng-model='name' /></div>",
+					scope:true
+				} */
+				return {
+					template:function(){
+						return angular.element(
+							document.querySelector("#scopeTemplate")).html();
+					},
+					scope:{}
 				}
 			})
 		.controller("scopeCtrl",function($scope){
-			// do nothing so far
+			$scope.data = {name:"Environmental Engineering"};
+			$scope.city = "Shanghai";
 		})
 		.controller("secondCtrl",function($scope){
 			// do nothing
 		})
 	</script>
 </head>
-<body>
+<body ng-controller="scopeCtrl" >
 	<div class="panel panel-default">
 		<div class="panel-body" scope-demo></div>
 		<div class="panel-body" scope-demo></div>
