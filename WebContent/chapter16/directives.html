@@ -6,8 +6,12 @@
 	<title>Chapter 16 Complex Directives</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type = "text/template" id = "listTemplate">
+		<ul>
+			<li ng-repeat="item in data">{{item.price | currency}}</li>
+		</ul>
+	</script>	
 	<script>
 		angular.module("exampleApp",[])
 			.directive("unorderedList",function(){
@@ -46,8 +50,16 @@
 						scope.data = scope[attrs["unorderedList"]];
 					},
 					restrict:"A",
-					template:"<ul><li ng-repeat='item in data'>"
-						+"{{item.price | currency}}</li></ul>"
+					/* template:"<ul><li ng-repeat='item in data'>"
+						+"{{item.price | currency}}</li></ul>" */
+					/* template:function(){
+						return angular.element(
+							document.querySelector("#listTemplate")).html();
+					} */
+					templateUrl: function(elem, attrs){
+						return attrs["template"] == "table"?
+							"tableTemplate.html":"itemTemplate.html";
+					}
 				}
 			})
 			.controller("defaultCtrl",function($scope){
@@ -83,8 +95,14 @@
 			<unordered-list list-source= "majors" list-property="price | currency">
 		</div> -->
 		
-		<div class="panel-body">
+		<!-- <div class="panel-body">
 			<div unordered-list="majors">
+				This is where the list will go
+			</div>
+		</div> -->
+		
+		<div class="panel-body">
+			<div unordered-list="majors" template = "table">
 				This is where the list will go
 			</div>
 		</div>
