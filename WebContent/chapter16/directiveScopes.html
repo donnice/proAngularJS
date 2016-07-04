@@ -7,13 +7,32 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script type = "text/ng-template" id = "scopeTemplate">
+	<!--<script type = "text/ng-template" id = "scopeTemplate">
 		<div class="panel-body">
 			<p>Name:<input ng-model="data.name" /></p>
 			<p>City:<input ng-model="city" /></p>
 			<p>Country:<input ng-model="country" /></p>
 		</div>
 	</script>
+	
+	<script type = "text/ng-template" id = "scopeTemplate">
+		<div class="panel-body">
+			<p>Data Value:{{local}}</p>
+		</div>	
+	</script>
+	
+	<script type = "text/ng-template" id = "scopeTemplate">
+		<div class="panel-body">
+			<p>Data Value: <input ng-model="local"/></p>
+		</div>	
+	</script>-->
+	
+	<script type = "text/ng-template" id = "scopeTemplate">
+		<div class="panel-body">
+			<p>Name:{{local}}, City:{{cityFn()}}</p>
+		</div>	
+	</script>
+	
 	<script>
 		angular.module("exampleApp",[])
 			.directive("scopeDemo",function(){
@@ -28,13 +47,22 @@
 							document.querySelector("#scopeTemplate")).html();
 					},
 					scope:{
-						local:"@nameprop"
+						/* local:"@nameprop" */ // one way binding for static {{}} value
+						local:"=nameprop", // two way binding
+						cityFn:"&city"
 					}
 				}
 			})
 		.controller("scopeCtrl",function($scope){
-			$scope.data = {name:"Environmental Engineering"};
-			$scope.city = "Shanghai";
+			$scope.data = {
+				name:"Environmental Engineering",
+				defaultCity:"Shanghai"
+			};
+			/* $scope.city = "Shanghai"; */
+
+			$scope.getCity = function(name){
+				return name == "Environmental Engineering" ? $scope.data.defaultCity:"Unknown";
+			}
 		})
 		.controller("secondCtrl",function($scope){
 			// do nothing
@@ -43,8 +71,14 @@
 </head>
 <body ng-controller="scopeCtrl" >
 	<div class="panel panel-default">
-		<div class="panel-body" scope-demo></div>
-		<div class="panel-body" scope-demo></div>
+		<div class="panel-body">
+			Direct Binding: <input ng-model="data.name" />
+		</div>
+		<!-- <div class="panel-body" scope-demo nameprop="{{data.name}}"></div>
+		<div class="panel-body" scope-demo nameprop="{{data.name+' and Science'}}"></div> -->
+		<!-- <div class="panel-body" scope-demo nameprop="data.name"></div> -->
+		<div class="panel-body" scope-demo 
+			city = "getCity(data.name)"  nameprop="data.name"></div>
 	</div>
 </body>
 </html>
