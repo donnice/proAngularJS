@@ -23,14 +23,14 @@
 						scope.dataSource = "directive";
 					},
 					restrict: "E",
-					scope: true,
+					scope: false,
 					template:function(){
 						return angular.element(
 							document.querySelector("#template")).html();
 					},
 					transclude:true
 				}
-			})
+			}) // because the content that is inside the panel element will be inserted into the template. 
 			.controller("defaultCtrl",function($scope){
 				$scope.dataSource = "controller";
 			})
@@ -40,6 +40,6 @@
 	<panel>
 		The data value comes from the: {{dataSource}}
 	</panel>
-
+	<!-- transclude:include both the template and the current content -->
 </body>
 </html>
