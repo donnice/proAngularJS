@@ -41,7 +41,7 @@
 						propName:"@itemName"
 					},
 					transclude:'element',
-					compile:function(element,attrs,transcludeFn){
+					compile:function(element,attrs,transcludeFn){ //Compiles an HTML string or DOM into a template and produces a template function, which can then be used to link scope and the template together.
 						return function($scope,$element,$attr) { // these are provucers
 							$scope.$watch("data.length",function(){
 								var parent = $element.parent();

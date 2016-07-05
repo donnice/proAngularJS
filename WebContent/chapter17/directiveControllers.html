@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p451 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 17 directive controllers</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type="text/ng-template" id = "majorTemplate">
+		<td>{{item.name}}</td>
+		<td><input ng-model='item.expiry' /></td>
+	</script>
+	<script>
+		angular.module("exampleApp",[])
+			.controller("defaultCtrl",function($scope){
+				$scope.majors = [
+				 	{name:"Environmental Engineering", price:10000, expiry:4},
+				   	{name:"Chemical Engineering", price:66000, expiry:2},
+				   	{name:"Electrical Engineering",price:62000, expiry:2},
+				   	{name:"Mechanical Engineering",price:30000, expiry:1},
+				   	{name:"Civil Engineering",price:15000, expiry:1},
+
+				   	{name:"Computer Science",price:6000,expiry:2},
+				   	{name:"Computational Finance and Risk Management", price:37800,expiry:2},
+					{name:"Material Science",price:162000, expiry:6},
+				   	{name:"Biology",price:3336,expiry:3},
+
+				   	{name:"Juris Doctor",price:12885,expiry:2},
+				   	
+				   	{name:"Master of Medicine",price:18811,expiry:2}
+				];
+			})
+			.directive("majorItem",function(){
+				return {
+					template:document.querySelector("#majorTemplate").outertext
+				}
+			})
+			.directive("majorTable",function(){
+				return {
+					transclude:true,
+					scope:{value:"=majorTable",
+						   data:"=majorData"},
+				}
+			});
+	</script>
+</head>
+<body>
+
+</body>
+</html>
