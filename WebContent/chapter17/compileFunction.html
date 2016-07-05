@@ -28,7 +28,7 @@
 				];
 
 				$scope.changeData = function(){
-					$scope.majors.push({name:"Master Of Business Administration",price:160000});
+					$scope.majors.push({name:"Master of Business Administration",price:160000});
 					for(var i = 0; i < $scope.majors.length; i++){
 						$scope.majors[i].price += 500;
 					}
@@ -42,12 +42,38 @@
 					},
 					transclude:'element',
 					compile:function(element,attrs,transcludeFn){
-
+						return function($scope,$element,$attr) { // these are provucers
+							$scope.$watch("data.length",function(){
+								var parent = $element.parent();
+								parent.children().remove();
+								for (var i = 0; i < $scope.data.length; i++){
+									var childScope = $scope.$new();
+									childScope[$scope.propName] = $scope.data[i];
+									transcludeFn(childScope,function(clone){
+										parent.append(clone);
+									});
+								}
+							});
+						}
 					}
 				}
-			})
+			});
 	</script>
-<body>
-
+<body ng-controller="defaultCtrl" class="panel panel-body">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr simple-repeater source="majors" item-name="item">
+				<td>{{item.name}}</td>
+				<td>{{item.price | currency}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-default text" ng-click="changeData()">Change</button>
 </body>
 </html>
