@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p445 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 17 Compile</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+			.controller("defaultCtrl",function($scope){
+				$scope.majors = [
+				 	{name:"Environmental Engineering", price:10000},
+				   	{name:"Chemical Engineering", price:66000},
+				   	{name:"Electrical Engineering",price:62000},
+				   	{name:"Mechanical Engineering",price:30000},
+				   	{name:"Civil Engineering",price:15000},
+
+				   	{name:"Computer Science",price:6000},
+				   	{name:"Computational Finance and Risk Management", price:37800},
+					{name:"Material Science",price:162000},
+				   	{name:"Biology",price:3336},
+
+				   	{name:"Juris Doctor",price:12885},
+				   	
+				   	{name:"Master of Medicine",price:18811}
+				];
+
+				$scope.changeData = function(){
+					$scope.majors.push({name:"Master Of Business Administration",price:160000});
+					for(var i = 0; i < $scope.majors.length; i++){
+						$scope.majors[i].price += 500;
+					}
+				}
+			})
+			.directive("simpleRepeater",function(){
+				return{
+					scope:{
+						data:"=source",
+						propName:"@itemName"
+					},
+					transclude:'element',
+					compile:function(element,attrs,transcludeFn){
+
+					}
+				}
+			})
+	</script>
+<body>
+
+</body>
+</html>
