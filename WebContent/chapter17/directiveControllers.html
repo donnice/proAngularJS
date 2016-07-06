@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p451 -->
+<!-- p455 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 17 directive controllers</title>
@@ -33,7 +33,15 @@
 			})
 			.directive("majorItem",function(){
 				return {
-					template:document.querySelector("#majorTemplate").outerText
+					template:document.querySelector("#majorTemplate").outerText,
+					require:"^majorTable",
+					link:function(scope,element,attrs,ctrl){
+						scope.$watch("item.quantity",function(){
+							ctrl.updateTotal();
+						});
+
+						scope.testNum = 3; // test
+					}
 				}
 			})
 			.directive("majorTable",function(){
@@ -41,8 +49,33 @@
 					transclude:true,
 					scope:{value:"=majorTable",
 						   data:"=majorData"},
+					controller:function($scope,$element,$attrs){
+						this.updateTotal = function(){
+							var total = 0;
+							for(var i = 0; i < $scope.data.length; i++){
+								total += Number($scope.data[i].expiry);
+							}
+							$scope.value = total;
+						}
+						$scope.newTst = 3;
+					}
 				}
-			});
+			})
+			.directive("resetTotals",function(){
+				return {
+					scope:{data:"=productData",proname:"@propertyName"},
+					template: document.querySelector("#resetTemplate").outerText,
+					require:"^majorTable",
+					link:function(scope,element,attrs,ctrl){
+						scope.reset = function(){
+							for(var i = 0; i < scope.data.lenth; i++){
+								scope.data[i][scope.propname] = 0;
+							}
+							ctrl.updateTotal();
+						}
+					}
+				}
+			})
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
@@ -57,7 +90,8 @@
 			<tr>
 				<th>Total:</th>
 				<td>{{totalValue}}</td>
-			</tr>	   
+			</tr>
+			<tr reset-totals product-data="majors" property-name="quantity"></tr>	   
 		</table>
 	</div>
 </body>
