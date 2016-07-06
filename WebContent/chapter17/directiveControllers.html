@@ -39,7 +39,7 @@
 					template:document.querySelector("#majorTemplate").outerText,
 					require:"^majorTable",
 					link:function(scope,element,attrs,ctrl){
-						scope.$watch("item.quantity",function(){
+						scope.$watch("item.expiry",function(){
 							ctrl.updateTotal();
 						});
 
@@ -50,9 +50,9 @@
 			.directive("majorTable",function(){
 				return {
 					transclude:true,
-					scope:{value:"=majorTable",
-						   data:"=majorData"},
-					controller:function($scope,$element,$attrs){
+					scope:{value:'=majorTable',
+						   data:'=majorData'},
+					controller:function($scope){
 						this.updateTotal = function(){
 							var total = 0;
 							for(var i = 0; i < $scope.data.length; i++){
@@ -65,19 +65,19 @@
 			})
 			.directive("resetTotals",function(){
 				return {
-					scope:{data:"=majorData",propname:"@propertyName"},
+					scope:{data:'=majorData',propname:'@propertyName'},
 					template: document.querySelector("#resetTemplate").outerText,
 					require:"^majorTable",
 					link:function(scope,element,attrs,ctrl){
 						scope.reset = function(){
-							for(var i = 0; i < scope.data.lenth; i++){
+							for(var i = 0; i < scope.data.length; i++){
 								scope.data[i][scope.propname] = 0;
 							}
 							ctrl.updateTotal();
 						}
 					}
 				}
-			});
+			})
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
