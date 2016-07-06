@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p457 -->
+<!-- p459 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 17 custom forms</title>
@@ -10,8 +10,8 @@
 	<script type="text/ng-template" id="triTemplate">
 		<div class="well">
 			<div class="btn-group">
-				<button class="btn btn-default">YES</button>
-				<button class="btn btn-default>NO</button>
+				<button class="btn btn-default">Yes</button>
+				<button class="btn btn-default">No</button>
 				<button class="btn btn-default">Not Sure</button>
 			</div>
 		</div>
@@ -27,12 +27,31 @@
 				replace:true,
 				require:"ngModel",
 				template:document.querySelector("#triTemplate").outerText,
-				
+				link:function(scope,element,attrs,ctrl){
+					var setSelected = function(value){
+						var buttons = element.find("button");
+						buttons.removeClass("btn-primary");
+						for(var i = 0; i < buttons.length; i++){
+							if(buttons.eq(i).text() == value){
+								buttons.eq(i).addClass("btn-primary");
+							}
+						}
+					}
+					setSelected(scope.dataValue);
+				}
 			}
-		})
+		});
 	</script>
 </head>
-<body>
-
+<body ng-controller="defaultCtrl">
+	<div><tri-button ng-model="dataValue"/></div>
+	<div class="well">
+		Value:
+		<select ng-model="dataValue">
+			<option>Yes</option>
+			<option>No</option>
+			<option>Not Sure</option>
+		</select>
+	</div>
 </body>
 </html>
