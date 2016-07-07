@@ -28,6 +28,13 @@
 				require:"ngModel",
 				template:document.querySelector("#triTemplate").outerText,
 				link:function(scope,element,attrs,ctrl){
+					element.on("click",function(event){
+						setSelected(event.target.innerText);
+						scope.$apply(function(){
+							ctrl.$setViewValue(event.target.innerText);
+						});
+					});
+					
 					var setSelected = function(value){
 						var buttons = element.find("button");
 						buttons.removeClass("btn-primary");
@@ -37,7 +44,14 @@
 							}
 						}
 					}
-					setSelected(scope.dataValue);
+				/* 	setSelected(scope.dataValue); */
+					ctrl.$render = function(){
+						setSelected(ctrl.$viewValue || "Not Sure");
+						//Returns the formatted value that should be displayed by the directive.
+					}
+					//This is the function that the NgModel controller 
+					//calls to update the UI when the data-bound value changes. 
+					//It is usually overridden by custom directives.
 				}
 			}
 		});
