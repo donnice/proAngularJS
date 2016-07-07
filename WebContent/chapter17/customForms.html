@@ -40,8 +40,11 @@
 
 					var validateParser = function(value){
 						var valid = (value == "Yes" || value == "No");
-						
+						ctrl.$setValidity("confidence",valid);
+						return valid? value:undefined;
 					}
+
+					ctrl.$parsers.push(validateParser);
 					
 					ctrl.$formatters.push(function(value){
 						return value == "Huh?" ? "Not Sure": value;
@@ -80,7 +83,7 @@
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
-	<div><tri-button ng-model="dataValue"/></div>
+	<!-- <div><tri-button ng-model="dataValue"/></div>
 	<div class="well">
 		Value:
 		<select ng-model="dataValue">
@@ -89,6 +92,9 @@
 			<option>Not Sure</option>
 			<option>Huh?</option>
 		</select>
-	</div>
+	</div> -->
+	<form name="myForm" novalidate>
+		<div><tri-button name="decision" ng-model="dataValue"/></div>
+	</form>
 </body>
 </html>

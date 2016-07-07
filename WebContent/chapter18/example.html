@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p469 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 18 Services</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope){
+			$scope.data = {
+				cities:["New York","Palo Alto","Philadelphia"],
+				totalClicks:0
+			};
+
+			$scope.$watch('data.totalClicks',function(newVal){
+				console.log("Total click count: "+newVal);
+			});
+		})
+		.directive("triButton",function(){
+			return {
+				scope:{counter:"=counter"},
+				link: function(scope,element,attrs){
+					element.on("click",function(event){
+						console.log("Button click: "+event.target.innerText);
+						scope.$apply(function(){
+							scope.counter++;
+						})
+					})
+				}
+			}
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>
