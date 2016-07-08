@@ -1,5 +1,5 @@
 //angular.module("exampleApp")
-angular.module("customDirectives",[])
+angular.module("customDirectives",["customServices"])
 .directive("triButton",function(){
 	return { 
 		// @ allows a value defined on the directive attribute to be passed to the directive's isolate scope. 
@@ -10,7 +10,7 @@ angular.module("customDirectives",[])
 		scope:{counter:"=counter"},
 		link: function(scope,element,attrs){
 			element.on("click",function(event){
-				console.log("Button click: "+event.target.innerText);
+				//logService.log("Button click: "+event.target.innerText);
 				scope.$apply(function(){
 					scope.counter++;
 				});
