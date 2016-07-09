@@ -8,6 +8,10 @@
 //	}
 //})
 
+//	Factory you create an object, add properties to it, then return that same object.
+//  Service, it’s instantiated with the ‘new’ keyword. Because of that, you’ll add properties to ‘this’ and the service will return ‘this’.
+//  Providers are the only service you can pass into your .config() function. 
+
 angular.module("customServices",[])
 //	.service("logService",function(){
 //		return {
@@ -29,6 +33,32 @@ angular.module("customServices",[])
 			}
 		}
 	});
+//	.provider("logService",function(){
+//		var counter = true;
+//		var debug = true;
+//		return {
+//			messageCounterEnabled: function(setting){
+//				if(angular.isDefined(setting)){
+//					counter = setting;
+//					return this;
+//				} else {
+//					return debug;
+//				}
+//			},
+//			$get:function(){
+//				return {
+//					messageCount:0,
+//					log:function(msg){
+//						if(debug){
+//							console.log("(LOG"+
+//									(counter? "+"+this.messageCount++ +")":
+//										")")+msg);
+//						}
+//					}
+//				};
+//			}
+//		}
+//	});
 
 var baseLogger = function(){
 	this.messageCount = 0;

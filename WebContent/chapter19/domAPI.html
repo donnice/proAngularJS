@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p489 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 19 DOM API Services</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		angular.module("examApp",[])
+		.controller("defaultCtrl",function($scope,$location){
+			// $on for events
+			// $watch for variables
+			$scope.$on("locationChangeSuccess",function(event,newUrl){
+				$scope.url = newUrl;
+			});
+
+			$scope.setUrl = function(component){
+				switch(component){
+					case "reset":
+						$location.path("");
+						$location.hash("");		// Gets or sets the hash section of the URL
+						$location.search("");
+						break;
+					case "path":
+						$location.path("/cities/newyork");
+						break;
+					case "hash":
+						$location.hash("north");
+						break;
+					 
+				}
+			}
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>

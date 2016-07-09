@@ -11,6 +11,9 @@
 	<script src = "services.js"></script>
 	<script>
 		angular.module("exampleApp",["customDirectives","customServices"])
+		/* .config(function(logServiceProvider){
+			logServiceProvider.debugEnabled(true).messageCounterEnabled(false);
+		}) */
 		.controller("defaultCtrl",function($scope,logService){
 			$scope.data = {
 				cities:["New York","Palo Alto","Philadelphia"],

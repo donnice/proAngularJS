@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p486 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 19 DOM API Services</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+		/* angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope,$window,$document){
+			/* $scope.displayAlert = function(msg){
+				$window.alert(msg);
+			}
+			$document.find("button").on("click",function(event){
+				$window.alert(event.target.innerText);
+			});
+		}); */
+
+		angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope,$interval){
+			$interval(function(){
+				$scope.time = new Date().toTimeString();
+			},2000);
+		});
+	</script>
+</head>
+<body ng-controller="defaultCtrl">
+	<!-- <button class="btn btn-primary">Click me!</button> -->
+	<div class="panel panel-default">
+		<h4 class="panel-heading">Time</h4>
+		<div class="panel-body">
+			The time is:{{time}}
+		</div>
+	</div>
+</body>	
+</html>
