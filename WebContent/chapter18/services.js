@@ -9,13 +9,25 @@
 //})
 
 angular.module("customServices",[])
-	.service("logService",function(){
+//	.service("logService",function(){
+//		return {
+//			messageCount: 0,
+//			log:function(msg){
+//				console.log("Debug:"+(this.messageCount++)+" "+msg);
+//			}
+//		};
+//	});
+	.provider("logService",function(){
 		return {
-			messageCount: 0,
-			log:function(msg){
-				console.log("Debug:"+(this.messageCount++)+" "+msg);
+			$get:function(){
+				return {
+					messageCount:0,
+					log:function(msg){
+						console.log("LOG+" + this.messageCount++ +")"+msg)
+					}
+				};
 			}
-		};
+		}
 	});
 
 var baseLogger = function(){
