@@ -6,13 +6,14 @@
 	<title>Chapter 19 DOM API Services</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> -->
 	<script>
-		angular.module("examApp",[])
+		angular.module("exampleApp",[])
 		.controller("defaultCtrl",function($scope,$location){
 			// $on for events
 			// $watch for variables
-			$scope.$on("locationChangeSuccess",function(event,newUrl){
+			$scope.$on("$locationChangeSuccess",function(event,newUrl){
 				$scope.url = newUrl;
 			});
 
@@ -29,13 +30,30 @@
 					case "hash":
 						$location.hash("north");
 						break;
-					 
+					case "search":
+						$location.search("select","hotels");
+						break;
+					case "url":
+						$location.url("/cities/newyork?select=hotels#north");
+						break; 
 				}
-			}
-		})
+			};
+		});
 	</script>
 </head>
-<body>
-
+<body ng-controller="defaultCtrl">
+	<div class="panel panel-default">
+		<h4 class="panel-heading">URL</h4>
+		<div class="panel-body">
+			<p>THE URL is:{{url}}</p>
+			<div class="btn-group">
+				<button class="btn btn-primary" ng-click="setUrl('reset')">Reset</button>
+				<button class="btn btn-primary" ng-click="setUrl('path')">Path</button>
+				<button class="btn btn-primary" ng-click="setUrl('hash')">Hash</button>
+				<button class="btn btn-primary" ng-click="setUrl('search')">Search</button>
+				<button class="btn btn-primary" ng-click="setUrl('url')">URL</button>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
