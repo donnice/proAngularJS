@@ -4,12 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 19 DOM API Services</title>
+	<base href="/">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> -->
 	<script>
 		angular.module("exampleApp",[])
+		.config(function($locationProvider){
+			$locationProvider.html5Mode(true);
+		})
 		.controller("defaultCtrl",function($scope,$location){
 			// $on for events
 			// $watch for variables
