@@ -10,11 +10,23 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<script>
 		angular.module("exampleApp",[])
-			.controller("defaultCtrl",function($scope){
+			.controller("defaultCtrl",function($scope,$exceptionHandler){
 				$scope.throwEX = function(){
-					throw new Error("Triggered Exception!");
+					/* throw new Error("Triggered Exception!"); */
+					try{
+						throw new Error("Triggered Exception!"); 
+					} catch(ex){
+						// $exceptionHandler(ex.message,"Button Click");
+						$exceptionHandler(ex,"Button Click");
+						// deliberately override the AngularJS implementation of the $errorHandler service in order to define a custom exception handling policy
+					}
 				}
-			});
+			})
+			.factory("$exceptionHandler",function($log){
+				return function(exception,cause){
+					$log.error("Message:"+exception.message+"(Cause:"+cause+")");
+				}
+			})
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
