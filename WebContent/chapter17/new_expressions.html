@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p514 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 19 Expressions</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.controller("defaultCtrl",function($scope){
+			$scope.cities = ["New York","Palo Alto","Philadelphia","Pasadena"];
+		})
+		.directive("evalExpression",function($compile){
+			return function(scope,element,attrs){
+				var content = "<ul><li ng-repeat='city in cities'>{{city}}</li></ul>";
+				var listElem = angular.element(content);
+				var compileFn = $compile(listElem);
+				compileFn(scope);
+				element.append(listElem);
+			}
+		});
+	</script>
+</head>
+<body ng-controller="defaultCtrl">
+	<div class="well">
+		<span eval-expression></span>
+	</div>
+</body>
+</html>
