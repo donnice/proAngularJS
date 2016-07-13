@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p501 -->
+<!-- p509 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 19 Expressions</title>
@@ -9,17 +9,82 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<script>
 		angular.module("exampleApp",[])
+		.config(function($interpolateProvider) {
+            $interpolateProvider.startSymbol("!!");
+            $interpolateProvider.endSymbol("!!");
+		})
 		.controller("defaultCtrl",function($scope){
-			$scope.price="100.24";
+			/* $scope.price="100.24"; */
+			$scope.dataValue = "100.23";
 		})
 		.directive("evalExpression",function($parse){
 			return function(scope,element,attrs){
-				
+				scope.$watch(attrs["evalExpression"],function(newValue){
+					try {
+						var expressionFn = $parse(scope.expr);
+						// String expression to compile
+						var result = expressionFn(scope);
+						if(result == undefined) {
+							result = "No result";
+						}
+					} catch (err) {
+						result = "Cannot evaluate expression";
+					}
+					element.text(result);
+				});
 			}
 		})
+		.directive("evalExpressionTwo",function($parse){
+			var expressionFn = $parse("total | currency");
+			return {
+				scope:{
+					amount:"=amount",
+					tax:"=tax"
+					// link: normally use for registering listener callbacks as well as updating the DOM
+				},
+				link:function(scope,element,attrs){
+					scope.$watch("amount",function(newValue){
+						var localData = {
+							total:Number(newValue)
+								+(Number(newValue)*(Number(scope.tax)/100))
+						}
+						element.text(expressionFn(scope,localData));
+					});
+				}
+			}
+		})
+		.directive("evalExpressionThree",function($interpolate){
+			var interpolationFn 
+				= $interpolate("The total is !!total | currency!!(including tax)");
+			return {
+				scope:{
+					amount:"=amount",
+					tax:"=tax"
+					// link: normally use for registering listener callbacks as well as updating the DOM
+				},
+				link:function(scope,element,attrs){
+					scope.$watch("amount",function(newValue){
+						var localData = {
+							total:Number(newValue)
+								+(Number(newValue)*(Number(scope.tax)/100))
+						}
+						element.text(interpolationFn(scope));
+					});
+				}
+			}
+		});
+		// The $interpolate service is more flexible than $parse because 
+		// it can work with strings that contain expressions rather than just expressions themselves.
 	</script>
 </head>
-<body>
-
+<body ng-controller="defaultCtrl">
+	<div class="well">
+		<p><input class="form-control" ng-model="dataValue"/></p>
+		<div>
+			<!-- Result:<span eval-expression="expr"></span> -->
+			<span eval-expression-three amount="dataValue" tax="10"></span>
+			<p>Origin amount:!!dataValue!!</p>
+		</div>
+	</div>
 </body>
 </html>
