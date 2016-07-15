@@ -23,8 +23,15 @@
 				$http.get("majorData.xml").then(function(response){
 					$scope.majors = [];
 					var majorElements = angular.element(response.data.trim()).find("major");
-					
-				})
+					for(var i = 0; i < majorElements.length; i++) {
+						var single_major = majorElements.eq(i);
+						$scope.majors.push({
+							name:single_major.attr("name"),
+							field:single_major.attr("field"),
+							price:single_major.attr("price")
+						});
+					}
+				});
 			}
 		});
 	</script>
@@ -48,6 +55,7 @@
 						<td>{{item.name}}</td>
 						<td>{{item.field}}</td>
 						<td>{{item.price | currency}}</td>
+						
 					</tr>
 				</tbody>
 			</table>
