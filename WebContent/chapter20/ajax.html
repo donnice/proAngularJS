@@ -9,9 +9,22 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
 	<script>
 		angular.module("exampleApp",[])
-		.controller("defaultCtrl",function($scope){
+		.controller("defaultCtrl",function($scope,$http){
 			$scope.loadData = function(){
-
+				/* $http.get("majorData.json").success(function(data){
+					$scope.majors = data;
+				}); */
+				/* $http.get("majorData.json").then(function(response){
+					console.log("Status:"+response.status);
+					console.log("Type:"+response.headers("content-type"));
+					console.log("Length:"+response.headers("content-length"));
+					$scope.majors = response.data;
+				}) */
+				$http.get("majorData.xml").then(function(response){
+					$scope.majors = [];
+					var majorElements = angular.element(response.data.trim()).find("major");
+					
+				})
 			}
 		});
 	</script>
@@ -32,9 +45,9 @@
 						<td colspan="3" class="text-center">No Data</td>
 					</tr>
 					<tr ng-repeat="item in majors">
-						<td>{{name}}</td>
-						<td>{{field}}</td>
-						<td>{{price | currency}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.field}}</td>
+						<td>{{item.price | currency}}</td>
 					</tr>
 				</tbody>
 			</table>

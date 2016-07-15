@@ -1,0 +1,14 @@
+[{"name":"East China University of Science and Technology", "field":"Environmental Engineering", "price":10000, "expiry":4},
+   	{"name":"University of Michigan at Ann Arbor", "field":"Chemical Engineering", "price":66000, "expiry":1},
+   	{"name":"University of California at Los Angeles", "field":"Electrical Engineering","price":62000, "expiry":2},
+   	{"name":"Massachusets Insititue of Technology", "field":"Engineering","price":30000, "expiry":1},
+   	{"name":"Civil Engineering", "field":"Engineering","price":15000, "expiry":1},
+
+   	{"name":"Computer Science", "field":"Science", "price":6000, "expiry":2},
+   	{"name":"Computational Finance and Risk Management", "field":"Science", "price":37800, "expiry":2},
+	{"name":"Material Science","field":"Science","price":162000, "expiry":6},
+   	{"name":"Biology", "field":"Science", "price":3336, "expiry":3},
+
+   	{"name":"Juris Doctor","field":"Art","price":12885, "expiry":2},
+   	
+   	{"name":"Master of Medicine", "field":"Medicine", "price":18811,"expiry":2}]
