@@ -22,14 +22,27 @@
 				}) */
 				var config = {
 					transformResponse: function(data,headers){
-						if(headers("conten-type") == "application/xml"
+						if(headers("content-type") == "application/xml"
 							&& angular.isString(data)){
-							
+							majors = [];
+							var majorElems = angular.element(data.trim()).find("major");
+							for(var i = 0; i < majorElems.length;i++){
+								var single_major = majorElems.eq(i);
+								majors.push({
+									name:single_major.attr("name"),
+									field:single_major.attr("field"),
+									price:single_major.attr("price")
+								});
+							}
+							console.log(majors.length);
+							return majors;
+						} else {
+							return data;
 						}
 					}		
 				}
 				
-				$http.get("majorData.xml").then(function(response){
+				/* $http.get("majorData.xml").then(function(response){
 					$scope.majors = [];
 					var majorElements = angular.element(response.data.trim()).find("major");
 					for(var i = 0; i < majorElements.length; i++) {
@@ -40,7 +53,13 @@
 							price:single_major.attr("price")
 						});
 					}
+				}); */
+				
+				$http.get("majorData.xml",config).success(function(data){
+					$scope.majors = data;
 				});
+
+				//console.log($scope.majors.length)
 			}
 		});
 	</script>
