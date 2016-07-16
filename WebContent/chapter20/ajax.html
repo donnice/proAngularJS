@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p519 -->
+<!-- p527 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 20 Ajax</title>
@@ -20,6 +20,15 @@
 					console.log("Length:"+response.headers("content-length"));
 					$scope.majors = response.data;
 				}) */
+				var config = {
+					transformResponse: function(data,headers){
+						if(headers("conten-type") == "application/xml"
+							&& angular.isString(data)){
+							
+						}
+					}		
+				}
+				
 				$http.get("majorData.xml").then(function(response){
 					$scope.majors = [];
 					var majorElements = angular.element(response.data.trim()).find("major");
