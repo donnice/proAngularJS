@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p534 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 20 Promises</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.directive("promiseWorker",function($q){
+		// A service that helps you run functions asynchronously, 
+		// and use their return values (or exceptions) when they are done processing.
+			var deferred = $q.defer();
+			return {
+				
+			}
+		})
+		.controller("defaultCtrl",function($scope){
+			
+		});
+	</script>
+</head>
+<body ng-controller="defaultCtrl">
+	<div class="well">
+		<button class="btn btn-primary">Heads</button>
+		<button class="btn btn-primary">Tails</button>
+		<button class="btn btn-primary">Abort</button>
+		Outcome:<span></span>
+	</div>
+</body>
+</html>
