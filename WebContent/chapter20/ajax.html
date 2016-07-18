@@ -11,16 +11,16 @@
 		angular.module("exampleApp",[])
 		.controller("defaultCtrl",function($scope,$http){
 			$scope.loadData = function(){
-				/* $http.get("majorData.json").success(function(data){
+				$http.get("majorData.json").success(function(data){
 					$scope.majors = data;
-				}); */
+				}); 
 				/* $http.get("majorData.json").then(function(response){
 					console.log("Status:"+response.status);
 					console.log("Type:"+response.headers("content-type"));
 					console.log("Length:"+response.headers("content-length"));
 					$scope.majors = response.data;
 				}) */
-				var config = {
+				/* var config = {
 					transformResponse: function(data,headers){
 						if(headers("content-type") == "application/xml"
 							&& angular.isString(data)){
@@ -40,7 +40,7 @@
 							return data;
 						}
 					}		
-				}
+				} */
 				
 				/* $http.get("majorData.xml").then(function(response){
 					$scope.majors = [];
@@ -55,11 +55,32 @@
 					}
 				}); */
 				
-				$http.get("majorData.xml",config).success(function(data){
+				/* $http.get("majorData.xml",config).success(function(data){
 					$scope.majors = data;
-				});
+				}); */
 
 				//console.log($scope.majors.length)
+			}
+
+			$scope.sendData = function() {
+				var config = {
+					headers: {
+						"content-type":"application/xml"
+					},
+					transformRequest:function(data,headers){
+						var rootElem = angular.element("<xml>");
+						for(var i = 0; i < data.length;i++) {
+							var majorElem = angular.element("<major>");
+							majorElem.attr("name",data[i].name);
+							majorElem.attr("field",dara[i].field);
+							majorElem.attr("price",data[i].price);
+							rootElem.append(majorElem);
+						}
+						rootElem.children().wrap("<majors>");
+						return rootElem.html();
+					}
+				}
+				$http.post("ajax.html",$scope.majors,config);		
 			}
 		});
 	</script>
@@ -87,8 +108,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<p><button class="btn btn-primary"
-				ng-click="loadData()">Load Data</button>
+			<p>
+				<button class="btn btn-primary" ng-click="loadData()">Load Data</button>
+				<button class="btn btn-primary" ng-click="sendData()">Send Data</button>
 			</p>
 		</div>
 	</div>
