@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p542 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 20 Promises</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.directive("promiseWorker",function($q){
+			var deferred  = [$q.defer(),$q.defer()];
+			var promises = [deferred[0].promise,deferred[1].promise];
+			return {
+				link:function(score,element,attrs) {
+					element.find("button").on("click",function(event){
+						var buttonText = event.target.innerText;
+						var buttonGroup = event.target.getAttribute("data-group");
+						if(buttonText == "Abort") {
+							deffered[buttonGroup].reject("Aborted");
+						} else {
+							deferred[buttonGroup].resolve(buttonText);
+						}
+					});
+				},
+				controller:function($scope,$element,$attrs) {
+					this.promise = $q.all(promises).then(function(results){
+						return results.join();
+					})
+				}
+			}
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>
