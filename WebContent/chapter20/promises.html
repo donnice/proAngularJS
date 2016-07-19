@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="exampleApp">
-<!-- p534 -->
+<!-- p536 -->
 <head>
 	<meta charset="UTF-8">
 	<title>Chapter 20 Promises</title>
@@ -12,9 +12,21 @@
 		.directive("promiseWorker",function($q){
 		// A service that helps you run functions asynchronously, 
 		// and use their return values (or exceptions) when they are done processing.
-			var deferred = $q.defer();
+			var deferred = $q.defer();	// Creates a deferred object
 			return {
-				
+				link:function(scope,element,attrs){
+					element.find("button").on("click",function(event){
+						var buttonText = event.target.innerText;
+						if(buttonText == "Abort") {
+							deferred.reject("Aborted");
+						} else {
+							deferred.resolve(buttonText);
+						}
+					});
+				},
+				controller:function($scope,$element,$attrs) {
+					this.promise = deferred.promise;
+				}
 			}
 		})
 		.controller("defaultCtrl",function($scope){
@@ -23,7 +35,7 @@
 	</script>
 </head>
 <body ng-controller="defaultCtrl">
-	<div class="well">
+	<div class="well" promise-worker>
 		<button class="btn btn-primary">Heads</button>
 		<button class="btn btn-primary">Tails</button>
 		<button class="btn btn-primary">Abort</button>
