@@ -18,7 +18,7 @@
 					element.find("button").on("click",function(event){
 						var buttonText = event.target.innerText;
 						if(buttonText == "Abort") {
-							deferred.reject("Aborted");
+							deferred.reject("Aborted");	// Returns a promise that is always rejected
 						} else {
 							deferred.resolve(buttonText);
 						}
@@ -26,6 +26,18 @@
 				},
 				controller:function($scope,$element,$attrs) {
 					this.promise = deferred.promise;
+				}
+			}
+		})
+		.directive("promiseObserver",function(){
+			return {
+				require:"^promiseWorker",
+				link:function(scope,element,attrs,ctrl) {
+					ctrl.promise.then(function(result){
+						element.text(result);
+					},function(reason){
+						element.text("Fail("+reason+")");
+					});
 				}
 			}
 		})
@@ -39,7 +51,7 @@
 		<button class="btn btn-primary">Heads</button>
 		<button class="btn btn-primary">Tails</button>
 		<button class="btn btn-primary">Abort</button>
-		Outcome:<span></span>
+		Outcome:<span promise-observer></span>
 	</div>
 </body>
 </html>
