@@ -1,0 +1,14 @@
+[{"name":"East China University of Science and Technology", "category":"Environmental Engineering", "price":10000, "expiry":4},
+   	{"name":"University of Michigan at Ann Arbor", "category":"Chemical Engineering", "price":66000, "expiry":1},
+   	{"name":"University of California at Los Angeles", "category":"Electrical Engineering","price":62000, "expiry":2},
+   	{"name":"Massachusets Insititue of Technology", "category":"Mechanical Engineering","price":30000, "expiry":1},
+   	{"name":"The Hong Kong University of Science and Technology", "category":"Civil Engineering","price":15000, "expiry":1},
+
+   	{"name":"Georgia Institute of Technology", "category":"Computer Science", "price":6000, "expiry":2},
+   	{"name":"University of Washington at Seattle", "category":"Computational Finance and Risk Management", "price":37800, "expiry":2},
+	{"name":"California Institute of Technology","category":"Applied Physics and Material Science","price":162000, "expiry":6},
+   	{"name":"Karlsruhe Institute of Technology", "category":"Biology", "price":3336, "expiry":3},
+
+   	{"name":"The Chinese University of Hong Kong","category":"Law","price":12885, "expiry":2},
+   	
+   	{"name":"The University of Hong Kong", "category":"Medicine", "price":18811,"expiry":2}]
