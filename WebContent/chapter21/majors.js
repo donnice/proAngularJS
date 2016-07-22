@@ -1,9 +1,11 @@
-angular.module("exampleApp",[])
+angular.module("exampleApp",["increment"])
 .constant("baseUrl","http://localhost:8080/proAngularJS/chapter21/majorData.json")
-.controller("defaultCtrl",function($scope,$http,baseUrl){
+.controller("defaultCtrl",function($scope,$http,$resource,baseUrl){
 	
 	$scope.displayMode = "list";
 	$scope.currentMajor = null;
+	
+	$scope.majorsResource=$resource(baseUrl+":id",{id:"@id"});
 	
 	$scope.listMajors = function() {
 //		$scope.majors = [
@@ -20,33 +22,45 @@ angular.module("exampleApp",[])
 //		    {id:10, name:"The University of Hong Kong", category:"Medicine", price:18811}
 //		    
 //		];
-		$http.get(baseUrl).success(function(data){
-			$scope.majors = data;
-		})
+//		$http.get(baseUrl).success(function(data){
+//			$scope.majors = data;
+//		})
+		$scope.majors = $scope.majorsResource.query();
 	}
 	
 	$scope.deleteMajor = function(major) {
 		// start from 1
-		$scope.majors.splice($scope.majors.indexOf(major),1);
+//		$scope.majors.splice($scope.majors.indexOf(major),1);
+		major.$delete().then(function(){
+			$scope.majors.splice($scope.majors.indexOf(major),1);
+		})
+		$scope.displayMode="list";
 	}
 	
 	$scope.createMajor = function(major) {
-		$scope.majors.push(major);
-		$scope.displayMode = "list";
+//		$scope.majors.push(major);
+//		$scope.displayMode = "list";
+		new $scope.majorsResource(major).$save().then(function(newMajor){
+			$scope.majors.push(newMajor);
+			$scope.displayMode="list";
+		});
 	}
 	
 	$scope.updateMajor = function(major) {
-		for(var i = 0; i < $scope.majors.length; i++) {
-			if($scope.majors[i].id == major.id){
-				$scope.majors[i] = major;
-				break;
-			}
-		}
+//		for(var i = 0; i < $scope.majors.length; i++) {
+//			if($scope.majors[i].id == major.id){
+//				$scope.majors[i] = major;
+//				break;
+//			}
+//		}
+//		$scope.displayMode = "list";
+		major.$save();
 		$scope.displayMode = "list";
 	}
 	
 	$scope.editOrCreateMajor = function(major) {
-		$scope.currentMajor = major?angular.copy(major):{};
+//		$scope.currentMajor = major?angular.copy(major):{};
+		$scope.currentMajor = major?major:{};
 		$scope.displayMode = "edit";
 	}
 	
@@ -59,6 +73,9 @@ angular.module("exampleApp",[])
 	}
 	
 	$scope.cancelEdit = function() {
+		if($scope.currentMajor && $scope.currentMajor.$get) {
+			$sope.currentMajor.$get();
+		}
 		$scope.currentMajor = {};
 		$scope.displayMode = "list";
 	}
