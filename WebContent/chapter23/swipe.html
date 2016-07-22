@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p604 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 23 Animation</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-touch.js"></script>
+	<script>
+		angular.module("exampleApp",["ngTouch"])
+		.controller("defaultCtrl",function($scope,$element){
+			$scope.swipeType = "<None>";
+			$scope.handleSwipe = function(direction) {
+				$scope.swipeType = direction;
+			}
+		});
+	</script>
+</head>
+<body ng-controller="defaultCtrl">
+	<div class="panel panel-default">
+		<div class="well"
+			 ng-swipe-right="handleSwipe('left-to-right')"
+			 ng-swipe-left="handleSwipe('right-to-left')">
+			<h4>Swipe Me!</h4>	 
+		</div>
+		<div>Swipe was: {{swipeType}}</div>
+	</div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+// page 570
 angular.module("exampleApp",["increment"])
 .constant("baseUrl","http://localhost:8080/proAngularJS/chapter21/majorData.json")
 .controller("defaultCtrl",function($scope,$http,$resource,baseUrl){
@@ -26,6 +27,11 @@ angular.module("exampleApp",["increment"])
 //			$scope.majors = data;
 //		})
 		$scope.majors = $scope.majorsResource.query();
+		// list REST Data
+		$scope.majors.$promise.then(function(data){
+			// do sth
+			// the promise is resolved when the ajax request for the data is complete. 
+		})
 	}
 	
 	$scope.deleteMajor = function(major) {
@@ -55,6 +61,7 @@ angular.module("exampleApp",["increment"])
 //		}
 //		$scope.displayMode = "list";
 		major.$save();
+		// Saves the object to the server
 		$scope.displayMode = "list";
 	}
 	
@@ -75,6 +82,7 @@ angular.module("exampleApp",["increment"])
 	$scope.cancelEdit = function() {
 		if($scope.currentMajor && $scope.currentMajor.$get) {
 			$sope.currentMajor.$get();
+			// Refreshes the object from the server, clearing any uncommitted local changes
 		}
 		$scope.currentMajor = {};
 		$scope.displayMode = "list";

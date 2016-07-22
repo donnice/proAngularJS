@@ -20,7 +20,9 @@
 					<button class="btn btn-xs btn-primary" ng-click="editOrCreateMajor(item)">
 						Edit
 					</button>
-					<increment value="item.price"/>
+					<!-- <increment value="item.price"/> -->
+					<increment item="item" property-name="price"
+					restful="true" method-name="$save"/>
 				</td>
 			</tr>
 		</tbody>
