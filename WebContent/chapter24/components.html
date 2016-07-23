@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<!-- p607 -->
+<head>
+	<meta charset="UTF-8">
+	<title>Chapter 24 Services</title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.css"/>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-touch.js"></script>
+	<script>
+		angular.module("exampleApp",[])
+		.config(function($provide){
+			$provide.decorator("$log",function($delegate){
+				$delegate.originalLog = $delegate.log;
+				$delegate.log = function(message){
+					$delegate.originLog("Decorated:"+message);
+				}
+				return $delegate;
+			});
+		})
+		.controller("defaultCtrl",function($scope,$log){
+			
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>
