@@ -18,6 +18,6 @@ describe("First Test",function(){
 		counter--;
 		
 		// Assert
-		expect(counter).toEqual(0);
+		expect(counter).toEqual(-1);
 	})
 });
