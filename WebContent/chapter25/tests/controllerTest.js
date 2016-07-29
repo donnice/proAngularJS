@@ -1,5 +1,5 @@
 describe("Controller Test",function(){
-	
+		// page 625
 	var mockScope = {};
 	var controller;
 	
@@ -15,4 +15,9 @@ describe("Controller Test",function(){
 	it("Creates variable",function(){
 		expect(mockScope.counter).toEqual(0);
 	})
-})
+	
+	it("Increments counter",function(){
+		mockScope.incrementCounter();
+		expect(mockScope.counter).toEqual(1);
+	});
+});
