@@ -67,4 +67,8 @@ describe("Controller Test",function(){
 		mockTimeout.flush(5000);
 		expect(mockScope.intervalCounter).toEqual(0);
 	});
+	
+	it("Writes log messages",function(){
+		expect(mockLog.log.logs.length).toEqual(1);
+	})
 });
