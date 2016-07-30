@@ -68,7 +68,7 @@ describe("Controller Test",function(){
 		expect(mockScope.intervalCounter).toEqual(0);
 	});
 	
-	it("Writes log messages",function(){
-		expect(mockLog.log.logs.length).toEqual(1);
-	})
+//	it("Writes log messages",function(){
+//		expect(mockLog.log.logs.length).toEqual(1);
+//	})
 });
